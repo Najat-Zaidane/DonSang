@@ -8,4 +8,4 @@ const {getCenters, setCenter, updateCenter, deleteCenter} = require('../controll
 router.route('/').get(getCenters).post(setCenter) 
 router.route('/:id').put(updateCenter).delete(deleteCenter)
 
-module.exports = router 
+module.exports = router
