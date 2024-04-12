@@ -18,7 +18,6 @@ const centerSchema = mongoose.Schema({
         default : "09h-12h à 14h-17h",
         required : [true,'les horaires sont obligatoires']
     },
-    crenaux : [crenauSchema] //integrayion of the creaneau as a table of many
 })
 
 module.exports = mongoose.model('center', centerSchema)
