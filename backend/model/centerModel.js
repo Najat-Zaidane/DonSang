@@ -3,6 +3,22 @@
 
 const  mongoose = require('mongoose')
 
+
 const centerSchema = mongoose.Schema({
-    
+    nom: {
+        type : String,
+        required : [true , 'le nom est obligatoire']
+    },
+    adresse : {
+        type : String,
+        required : [true,'l\'adresse est obligatoire']
+    },
+    heuresOuvertures : {
+        type : String,
+        default : "09h-12h à 14h-17h",
+        required : [true,'les horaires sont obligatoires']
+    },
+    crenaux : [crenauSchema] //integrayion of the creaneau as a table of many
 })
+
+module.exports = mongoose.model('center', centerSchema)
