@@ -1,8 +1,11 @@
-//tp connect to the database 
 
-//all the mongoose methods are asynchronised : they return a promise
-const connectDB = async () => {
+module.exports =  {
+   HOST : 'localhost', 
+   USER : 'root',
+   PASSWORD : '',
+   DB  : 'donSang',
+   dialect : 'mysql',
+
    
-}
 
-module.exports = connectDB
+}
