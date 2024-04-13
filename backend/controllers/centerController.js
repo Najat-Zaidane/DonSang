@@ -2,10 +2,13 @@
 
 //db
 const db = require('../model/centerModel')
+
 //Create the main Model 
+const Center = db.centers
 
+//main work 
 
-const asyncHandler = require('express-async-handler');
+const asyncHandler = require('express-async-handler') // this function is used to simplify errors handling for asynchronous  functions that returns promisesf
 
 // @desc Get center
 // @route  GET /api/centers
