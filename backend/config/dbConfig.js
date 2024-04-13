@@ -1,6 +1,5 @@
-const Sequelize = require('sequelize');
 
-module.exports =   new Sequelize ({
+module.exports = {
    HOST : 'localhost', 
    USER : 'root',
    PASSWORD : '',
@@ -15,4 +14,4 @@ module.exports =   new Sequelize ({
     idle : 10000    
    },
 
-})
+}
