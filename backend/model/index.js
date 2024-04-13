@@ -53,6 +53,9 @@ db.sequelize.sync({force : false})  //to not lose te data
             console.log('yes re-sync done!')
         })
 
+
+        
+
 module.exports = db
 
 //our database will have 5 tables ( centers, users....)

@@ -1,5 +1,10 @@
 //this file contains the functions to manage the centers routes 
 
+//db
+const db = require('../model/centerModel')
+//Create the main Model 
+
+
 const asyncHandler = require('express-async-handler');
 
 // @desc Get center
