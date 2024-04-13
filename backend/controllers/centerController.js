@@ -10,6 +10,24 @@ const Center = db.centers
 
 const asyncHandler = require('express-async-handler') // this function is used to simplify errors handling for asynchronous  functions that returns promisesf
 
+// @desc Set center
+// @route  POST /api/centers
+// @access Private
+const setCenter = asyncHandler (async (req, res) => {
+    let info = {
+        nom: req.body.nom,
+        adresse: req.body.adresse,
+        email: req.body.email,
+    }
+    if(!req.body.nom || !req.body.adresse || !req.body.email){
+        throw new Error('Please add all the fields')
+    }
+    const center= await Center.create(info) // to create the center withit's infos and put it the the db
+    
+    res.status(200).json(center)
+} ) 
+
+
 // @desc Get center
 // @route  GET /api/centers
 // @access Private
@@ -17,17 +35,6 @@ const getCenters = asyncHandler (async (req, res) => {
     res.status(200).json({message : 'Get centers' })
 })
 
-// @desc Set center
-// @route  POST /api/centers
-// @access Private
-const setCenter = asyncHandler (async (req, res) => {
-    if(!req.body.text) {
-        res.status(400)
-        throw new Error('Please add a text field')
-    }
-
-    res.status(200).json({message : 'Set center' })
-} ) 
 
 // @desc Update center
 // @route  Put /api/centers/:id

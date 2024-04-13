@@ -8,17 +8,6 @@ const {errorHandler} = require('./middleware/errorMiddleware')
 const port = process.env.port  || 5000
 
 
-const db = require('./model/index')
-// testing the db
-sequelize.authenticate()
-    .then(() => {
-        console.log("Database connected")
-    
-    })
-    .catch(err => {
-        console.log('Error : '+ err)
-    }) 
-
 
 const app = express()
 
@@ -30,8 +19,9 @@ var corsOptions = {
 
 //adding  middleware for handling data parsing in the tester postman
 app.use(cors(corsOptions))
+
 app.use(express.json())
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: true}))
 
 
 //if we hit the /api/centres it's gonna look into the centreRoutes file
@@ -41,3 +31,5 @@ app.use(errorHandler)
 
 //server with the port number 
 app.listen(port, () => console.log(`Server started on port ${port}`) )
+
+

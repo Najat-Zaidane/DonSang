@@ -4,13 +4,16 @@
 module.exports = (sequelize,DataTypes) => {
     const Center = sequelize.define("center",{
         nom : {
-            type: DataTypes.String
+            type: DataTypes.String,
+            allowNull: false,
         },
         adresse : {
-            type : DataTypes.String
+            type : DataTypes.String,
+            allowNull: false
         },
         email : {
-            type : DataTypes.String
+            type : DataTypes.String,
+            allowNull: false
         }
     })
 
