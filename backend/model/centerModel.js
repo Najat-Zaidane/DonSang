@@ -1,21 +1,28 @@
 //in this folder model, we're gonna define any ressource that we have
-//in this file we're gonna define the schema wich gonna be the fields for this particular ressource ( goal) 
+//in this file we're gonna define the schema wich gonna be the fields for this particular ressource ( center)
+const Sequelize = require('sequelize');
+const sequelize = require('../config/dbConfig');
 
-module.exports = (sequelize,DataTypes) => {
-    const Center = sequelize.define("center",{
-        nom : {
-            type: DataTypes.String,
-            allowNull: false,
-        },
-        adresse : {
-            type : DataTypes.String,
-            allowNull: false
-        },
-        email : {
-            type : DataTypes.String,
-            allowNull: false
-        }
-    })
+const Center = sequelize.define("center", {
+      nom: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      adresse: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false
+      }
+    });
 
-    return Center
-}
+module.exports = Center;
+  
+
+
+
+  
+
+
