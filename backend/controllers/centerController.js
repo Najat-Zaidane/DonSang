@@ -22,7 +22,7 @@ const setCenter = asyncHandler (async (req, res) => {
     if(!req.body.nom || !req.body.adresse || !req.body.email){
         throw new Error('Please add all the fields')
     }
-    const center= await Center.create(info) // to create the center withit's infos and put it the the db
+    const center= await Center.create(nfo) // to create the center withit's infos and put it the the db
     
     res.status(200).json(center)
 } ) 
