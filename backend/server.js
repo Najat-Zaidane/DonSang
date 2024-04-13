@@ -8,6 +8,18 @@ const {errorHandler} = require('./middleware/errorMiddleware')
 const port = process.env.port  || 5000
 
 
+const db = require('./model/index')
+// testing the db
+sequelize.authenticate()
+    .then(() => {
+        console.log("Database connected")
+    
+    })
+    .catch(err => {
+        console.log('Error : '+ err)
+    }) 
+
+
 const app = express()
 
 //cors 

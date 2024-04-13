@@ -22,15 +22,15 @@ const sequelize = new Sequelize(
     }
 )
 
-// testing the db
-sequelize.authenticate()
-    .then(() => {
-        console.log("Database connected")
+// // testing the db
+// sequelize.authenticate()
+//     .then(() => {
+//         console.log("Database connected")
     
-    })
-    .catch(err => {
-        console.log('Error : '+ err)
-    }) 
+//     })
+//     .catch(err => {
+//         console.log('Error : '+ err)
+//     }) 
 
 //intialize the db 
 
