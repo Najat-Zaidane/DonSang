@@ -1,6 +1,5 @@
 const Sequelize = require('sequilize')
 const sequelize = require('../config/dbConfig');
-const { type } = require('os');
 
 const User = sequelize.define("user" , {
     nom : {
@@ -15,6 +14,7 @@ const User = sequelize.define("user" , {
         type : Sequelize.STRING,
         allowNull : false,
         unique: true,
+        //email validation
         validate:{
             isEmail:true
         }
