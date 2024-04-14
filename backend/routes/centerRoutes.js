@@ -3,9 +3,9 @@
 
 const express = require('express')
 const router = express.Router()
-const {getCenters, setCenter, updateCenter, deleteCenter} = require('../controllers/centerController')
+const {getCenters, setCenter, updateCenter, getCenterById,deleteCenter} = require('../controllers/centerController')
 
 router.route('/').get(getCenters).post(setCenter) 
-router.route('/:id').put(updateCenter).delete(deleteCenter)
+router.route('/:id').put(updateCenter).delete(deleteCenter).get(getCenterById)
 
 module.exports = router
