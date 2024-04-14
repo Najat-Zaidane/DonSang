@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler') // this function is used to simplify errors handling for asynchronous  functions that returns promises
+const bcrypt = require('bcryptjs')
 const User = require('../models/userModel')
 
 //@desc Register new user
@@ -25,7 +26,8 @@ const registerUser = asyncHandler( async (req,res) => {
         const user = await User.create({
             nom, 
             prenom, 
-            email, tele,
+            email, 
+            tele,
             pwd, // to hash 
             role,
             isActive,
@@ -34,7 +36,15 @@ const registerUser = asyncHandler( async (req,res) => {
          //if the user then displaying the user with the generated token 
         res.status(200).json({
             message : 'user created successfuly ',
-            data : user
+            data : {
+                id : user.id ,
+                nom : user.nom,
+                email : user.email, 
+                tele: user.tele,
+                role : user.role,
+                isActive: user.isActive,
+              // token: generateToken(user.id),
+            }
         })
         }catch (error) {
           res.status(500).json({message : 'Failed to create the user !'})
@@ -53,7 +63,8 @@ const loginUser = asyncHandler( async (req,res) => {
         }
         //checking the email
         const user = await User.findOne({where : {email : email}})
-        if(user && ( await compare(pwd, user.pwd))){
+        //chekcking the pwd
+        if(user && ( await bcrypt.compare(pwd, user.pwd))){
             res.status(200).json({
                 message: 'user logged in successfuly',
                 data : {
@@ -63,9 +74,11 @@ const loginUser = asyncHandler( async (req,res) => {
                     //token 
                 }
             })
+        }else {
+            res.status(400).json({message : 'Invalid  credentials!'})
         }
     } catch (error) {
-        
+        res.status(500).json({message : 'Failed to log in the user !'})
     }
 })
 
@@ -98,6 +111,6 @@ const loginUser = asyncHandler( async (req,res) => {
 
 module.exports  ={
     registerUser,
-    getUsers,
+   // getUsers,
     loginUser,
 }
