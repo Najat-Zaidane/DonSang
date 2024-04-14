@@ -41,20 +41,60 @@ const registerUser = asyncHandler( async (req,res) => {
     }
 })
 
-
-//@desc get all the users for admin profit
-//@route GET /api/users
-//@access Private
-const getUsers = asyncHandler( async (req,res) => { 
+//@desc Authenticate user
+//@route POST /api/users/login
+//@access Public
+const loginUser = asyncHandler( async (req,res) => {
     try {
-        const users = await User.findAll()
-        res.status(200).json({message : 'Successfully got all users', data : users})
+        const {email , pwd} = req.body;
+        //check the fields
+        if( !email || !pwd ){
+            res.status(400).json({message:'please provide an email and a password'});
+        }
+        //checking the email
+        const user = await User.findOne({where : {email : email}})
+        if(user && ( await compare(pwd, user.pwd))){
+            res.status(200).json({
+                message: 'user logged in successfuly',
+                data : {
+                    
+                }
+            })
+        }
     } catch (error) {
-        res.status(500).json({message : 'Failed to fetch the users ! '})
+        
     }
-}) 
+})
+
+
+
+
+// // protect this route 
+// //@desc get all the users for admin profit
+// //@route GET /api/users
+// //@access Private
+// const getUsers = asyncHandler( async (req,res) => { 
+//     try {
+//         const users = await User.findAll()
+//         res.status(200).json({message : 'Successfully got all users', data : users})
+//     } catch (error) {
+//         res.status(500).json({message : 'Failed to fetch the users ! '})
+//     }
+// }) 
+
+// //@desc get user data
+// //@route GET /api/users/me
+// //@access private
+// const getMe = asyncHandler( async (req, res) => {
+//     try {
+//       res.status(200).json(user)  
+//     } catch (error) {
+        
+//     }
+// })
 
 module.exports  ={
     registerUser,
     getUsers,
+    loginUser,
 }
