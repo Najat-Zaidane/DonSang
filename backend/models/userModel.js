@@ -1,5 +1,6 @@
 const Sequelize = require('sequilize')
 const sequelize = require('../config/dbConfig');
+const { isIn } = require('validator');
 
 const User = sequelize.define("user" , {
     nom : {
@@ -30,7 +31,10 @@ const User = sequelize.define("user" , {
     role : {
         type: Sequelize.STRING,
         allowNull : false,
-        defaultValue : 'user'
+        defaultValue : 'Donator',
+        validate : {
+            isIn : ['Donator', 'Admin']
+        },
     },
     isActive : {
         type : Sequelize.BOOLEAN,
