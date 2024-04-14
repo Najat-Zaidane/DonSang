@@ -75,6 +75,11 @@ const updateCenter = asyncHandler (async (req, res) => {
 // @route  DELETE /api/centers/:id
 // @access Private
 const deleteCenter = asyncHandler ( async (req, res) => {
+    try {
+        
+    } catch (error) {
+        
+    }
     res.status(200).json({message : `Delete center ${req.params.id}`  })
 } ) 
 
