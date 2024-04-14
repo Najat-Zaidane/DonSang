@@ -1,7 +1,7 @@
 //this file contains the functions to manage the centers routes 
 
 const asyncHandler = require('express-async-handler') // this function is used to simplify errors handling for asynchronous  functions that returns promises
-const Center = require('../model/centerModel');
+const Center = require('../models/centerModel');
 const { where } = require('sequelize');
 
 // @desc Set center
