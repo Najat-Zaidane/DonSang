@@ -7,10 +7,12 @@ const User = require('../models/userModel')
 const registerUser = asyncHandler(async (req,res) => {
     try {
         const {nom, prenom, email, tele,pwd,role, isActive} = req.body;
+
         //check the fields
         if(!nom || !prenom ||!email ||!tele ||!pwd ||!role ||!isActive ) {
             res.status(400).json({message :   'Please fill all the field'}) 
         } 
+
         //check if user exists
         const userExists = await User.findOne({ where : {email: email} })
         if (userExists){
@@ -28,13 +30,14 @@ const registerUser = asyncHandler(async (req,res) => {
             role,
             isActive,
         })
+        
          //if the user then displaying the user with the generated token 
         res.status(200).json({
             message : 'user created successfuly ',
             data : user
         })
         }catch (error) {
-          res.status(501).json({message : 'Failed to create the user !'})
+          res.status(500).json({message : 'Failed to create the user !'})
     }
 })
 
