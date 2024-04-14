@@ -76,11 +76,18 @@ const updateCenter = asyncHandler (async (req, res) => {
 // @access Private
 const deleteCenter = asyncHandler ( async (req, res) => {
     try {
-        
+        const deletedRowsCount = await Center.destroy({
+            where : {id : req.params.id}
+        })
+        if(deletedRowsCount === 0 ){
+            res.status(404).json({message : "Center not found"})
+        } else {
+            res.status(200).json({message : `Delete center ${req.params.id} successfuly` })
+        }
     } catch (error) {
-        
+        res.status(500).json({ message: 'Failed to delete center.' });
     }
-    res.status(200).json({message : `Delete center ${req.params.id}`  })
+   
 } ) 
 
 module.exports = {
