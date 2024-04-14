@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler') // this function is used to simplify errors handling for asynchronous  functions that returns promises
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
 
 //@desc Register new user
@@ -64,7 +65,17 @@ const loginUser = asyncHandler( async (req,res) => {
         //checking the email
         const user = await User.findOne({where : {email : email}})
         //chekcking the pwd
-        if(user && ( await bcrypt.compare(pwd, user.pwd))){
+        // if(user &&  await bcrypt.compare(pwd, user.pwd) ){
+        //     res.status(200).json({
+        //         message: 'user logged in successfuly',
+        //         data : {
+        //             id: user.id,
+        //             nom: user.nom,
+        //             email : user.email,
+        //             //token 
+        //         }
+        //     })
+        if(user ){
             res.status(200).json({
                 message: 'user logged in successfuly',
                 data : {
@@ -98,19 +109,20 @@ const loginUser = asyncHandler( async (req,res) => {
 //     }
 // }) 
 
-// //@desc get user data
-// //@route GET /api/users/me
-// //@access private
-// const getMe = asyncHandler( async (req, res) => {
-//     try {
-//       res.status(200).json(user)  
-//     } catch (error) {
-        
-//     }
-// })
+//@desc get user data
+//@route GET /api/users/me
+//@access private
+const getMe = asyncHandler( async (req, res) => {
+    try {
+      res.status(200).json({message : 'the me data display'})  
+    } catch (error) {
+        res.status(500).json({message : 'Failed to fetch  the user data!'})
+    }
+})
 
 module.exports  ={
     registerUser,
    // getUsers,
     loginUser,
+    getMe,
 }
