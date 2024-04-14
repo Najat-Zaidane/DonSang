@@ -4,7 +4,7 @@ const User = require('../models/userModel')
 //@desc Register new user
 //@route POST /api/users
 //@access Public
-const registerUser = asyncHandler(async (req,res) => {
+const registerUser = asyncHandler( async (req,res) => {
     try {
         const {nom, prenom, email, tele,pwd,role, isActive} = req.body;
 
@@ -30,7 +30,7 @@ const registerUser = asyncHandler(async (req,res) => {
             role,
             isActive,
         })
-        
+
          //if the user then displaying the user with the generated token 
         res.status(200).json({
             message : 'user created successfuly ',
@@ -41,6 +41,20 @@ const registerUser = asyncHandler(async (req,res) => {
     }
 })
 
+
+//@desc get all the users for admin profit
+//@route GET /api/users
+//@access Private
+const getUsers = asyncHandler( async (req,res) => { 
+    try {
+        const users = await User.findAll()
+        res.status(200).json({message : 'Successfully got all users', data : users})
+    } catch (error) {
+        res.status(500).json({message : 'Failed to fetch the users ! '})
+    }
+}) 
+
 module.exports  ={
     registerUser,
+    getUsers,
 }
