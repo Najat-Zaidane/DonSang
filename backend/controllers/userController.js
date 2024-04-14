@@ -15,13 +15,15 @@ const registerUser = asyncHandler( async (req,res) => {
             res.status(400).json({message :   'Please fill all the field'}) 
         } 
 
-        //check if user exists
+        //check if the user exists
         const userExists = await User.findOne({ where : {email: email} })
         if (userExists){
         res.status(400).json({message : 'User already exists'})      
         }
 
         // hashing the pwd
+        const salt = await bcrypt.genSalt(10);
+        const hashedPwd = await bcrypt.hash(pwd,salt)
 
         //create the user 
         const user = await User.create({
@@ -29,13 +31,14 @@ const registerUser = asyncHandler( async (req,res) => {
             prenom, 
             email, 
             tele,
-            pwd, // to hash 
+            pwd : hashedPwd,
             role,
             isActive,
         })
 
          //if the user then displaying the user with the generated token 
-        res.status(200).json({
+        if(user) {
+         res.status(201).json({
             message : 'user created successfuly ',
             data : {
                 id : user.id ,
@@ -46,7 +49,8 @@ const registerUser = asyncHandler( async (req,res) => {
                 isActive: user.isActive,
               // token: generateToken(user.id),
             }
-        })
+        }) }
+
         }catch (error) {
           res.status(500).json({message : 'Failed to create the user !'})
     }
