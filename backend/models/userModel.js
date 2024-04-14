@@ -1,4 +1,4 @@
-const Sequelize = require('sequilize')
+const Sequelize = require('sequelize')
 const sequelize = require('../config/dbConfig');
 const { isIn } = require('validator');
 

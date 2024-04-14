@@ -44,8 +44,10 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 
-//if we hit the /api/centres it's gonna look into the centreRoutes file
+//if we hit the /api/centers it's gonna look into the centerRoutes file
+//add here all the ressources routes
 app.use('/api/centers',require('./routes/centerRoutes'))
+app.use('/api/users',require('./routes/userRoutes'))
 
 app.use(errorHandler)
 
