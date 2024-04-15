@@ -1,7 +1,9 @@
 //route protection
 //this file is for the middleware function  that will be used to check if a user is authenticated or not by checking the token  in their request header
-//if they are authenticated, it will redirect them to the dashboard
-//otherwise, it will show a login form that handles user authentication.
+//extracts the JWT from the request header, 
+//verifies it, 
+//and attaches the user object to the request for authenticated routes
+
 
 const jwt = require('jsonwebtoken')
 const asyncHandler = require('express-async-handler')
