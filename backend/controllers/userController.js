@@ -8,10 +8,10 @@ const User = require('../models/userModel')
 //@access Public
 const registerUser = asyncHandler( async (req,res) => {
     try {
-        const {nom, prenom, email, tele,pwd,role, isActive} = req.body;
+        const {nom, prenom, email, tele,pwd,role} = req.body;
 
         //check the fields
-        if(!nom || !prenom ||!email ||!tele ||!pwd ||!role ||!isActive ) {
+        if(!nom || !prenom ||!email ||!tele ||!pwd ||!role ) {
             res.status(400).json({message :   'Please fill all the field'}) 
         } 
 
@@ -33,7 +33,6 @@ const registerUser = asyncHandler( async (req,res) => {
             tele,
             pwd : hashedPwd,
             role,
-            isActive,
         })
 
          //if the user then displaying the user with the generated token 
@@ -46,7 +45,6 @@ const registerUser = asyncHandler( async (req,res) => {
                 email : user.email, 
                 tele: user.tele,
                 role : user.role,
-                isActive: user.isActive,
               // token: generateToken(user.id),
             }
         }) }
@@ -69,29 +67,19 @@ const loginUser = asyncHandler( async (req,res) => {
         //checking the email
         const user = await User.findOne({where : {email : email}})
         //chekcking the pwd
-        // if(user &&  await bcrypt.compare(pwd, user.pwd) ){
-        //     res.status(200).json({
-        //         message: 'user logged in successfuly',
-        //         data : {
-        //             id: user.id,
-        //             nom: user.nom,
-        //             email : user.email,
-        //             //token 
-        //         }
-        //     })
-        if(user ){
+        if(user &&  (await bcrypt.compare(req.body.pwd, user.pwd) )){
             res.status(200).json({
                 message: 'user logged in successfuly',
                 data : {
                     id: user.id,
                     nom: user.nom,
                     email : user.email,
+                    isActive : user.isActive
                     //token 
                 }
-            })
-        }else {
-            res.status(400).json({message : 'Invalid  credentials!'})
-        }
+             })
+            }
+       
     } catch (error) {
         res.status(500).json({message : 'Failed to log in the user !'})
     }
