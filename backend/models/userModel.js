@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../config/dbConfig');
 const { isIn } = require('validator');
+const Rdv = require('./rdvModel');
 
 const User = sequelize.define("user" , {
     nom : {
@@ -43,5 +44,9 @@ const User = sequelize.define("user" , {
     },
 
 })
+
+//Define the assocations : a one-to-many relation
+// a user can have 
+User.hasMany(Rdv, {foreignKey : 'userId'}) // the userId is a field in Rdv table and it will assocaite rdvs with their users
 
 module.exports =  User;
