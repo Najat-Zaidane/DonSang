@@ -45,7 +45,7 @@ const registerUser = asyncHandler( async (req,res) => {
                 email : user.email, 
                 tele: user.tele,
                 role : user.role,
-              // token: generateToken(user.id),
+                token: generateToken(user.id),
             }
         }) }
 
@@ -67,25 +67,26 @@ const loginUser = asyncHandler( async (req,res) => {
         //checking the email
         const user = await User.findOne({where : {email : email}})
         //chekcking the pwd
-        if(user &&  (await bcrypt.compare(req.body.pwd, user.pwd) )){
+        const validPwd = await bcrypt.compare(pwd, user.pwd) 
+        if(user && validPwd ){
             res.status(200).json({
                 message: 'user logged in successfuly',
                 data : {
                     id: user.id,
                     nom: user.nom,
                     email : user.email,
-                    isActive : user.isActive
-                    //token 
+                    isActive : user.isActive,
+                    token : generateToken(user.id),
                 }
              })
             }
-       
+        else {
+            res.status(400).json({message : 'Invalid  credentials!'})
+        }
     } catch (error) {
         res.status(500).json({message : 'Failed to log in the user !'})
     }
 })
-
-
 
 
 // // protect this route 
@@ -103,7 +104,7 @@ const loginUser = asyncHandler( async (req,res) => {
 
 //@desc get user data
 //@route GET /api/users/me
-//@access private
+//@access Private
 const getMe = asyncHandler( async (req, res) => {
     try {
       res.status(200).json({message : 'the me data display'})  
@@ -111,6 +112,14 @@ const getMe = asyncHandler( async (req, res) => {
         res.status(500).json({message : 'Failed to fetch  the user data!'})
     }
 })
+
+//Generate the JWT
+//sign a new token with the id passed in and the secret used
+const generateToken = (id) => {
+    return jwt.sign({id} , process.env.JWT_SECRET,{
+        expiresIn : '30d', // token will expire in 30 days
+    } )
+}
 
 module.exports  ={
     registerUser,

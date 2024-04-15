@@ -1,4 +1,4 @@
-//in this file we'll have functions that will execute during the response cycle
+//in this file we'll have functions that will execute during the request response cycle
 const errorHandler = (err, req, res, next) => {
     const statusCode =  res.statusCode ? res.statusCode : 500
 
