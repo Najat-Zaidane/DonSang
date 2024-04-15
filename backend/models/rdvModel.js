@@ -5,30 +5,6 @@ const Center = require('./centerModel')
 const Creneau = require('./creneauModel')
 
 const Rdv = sequelize.define("rdv", {
-  userId: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    references: {
-      model: User,
-      key: 'id',
-    },
-  },
-  centerId: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    references: {
-      model: Center,
-      key: 'id',
-    },
-  },
-  creneauId: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    references: {
-      model: Creneau,
-      key: 'id',
-    },
- },
   dateTime: {
     type: Sequelize.DATE, // Use DATE for both date and time
     allowNull: false,
@@ -40,8 +16,17 @@ const Rdv = sequelize.define("rdv", {
   },
 });
 
-// Associations
+// Association rdv and creneau : one to many 
+Creneau.hasMany(Rdv,{foreignKey : 'creneauId'})
 Rdv.belongsTo(Creneau, { foreignKey: 'creneauId' });
+
+//assoc rdv and center 
+//one to many
+Center.hasMany(Rdv, {foreignKey: 'centerId' })
+//one to one 
+Rdv.belongsTo(Center, { foreignKey: 'centerId' });
+
+
 
 
 module.exports = Rdv;
