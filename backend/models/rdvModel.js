@@ -44,7 +44,7 @@ const Rdv = sequelize.define("rdv", {
 
 //rdv and user : one-to-one relation
 //each rdv is associated with one user
-Rdv.belongsTo(User, { foreignKey : 'userId'}) 
+//Rdv.belongsTo(User, { foreignKey : 'userId'}) 
 
 //rdv and creneau : one-to-one relation
 //each rdv is associated with one creaneau
