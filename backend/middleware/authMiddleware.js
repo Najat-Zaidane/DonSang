@@ -16,10 +16,27 @@ const protect = asyncHandler ( async (req, res , next ) =>{
              token = req.headers.authorization.split(' ')[1]
 
              //verify token
-             const decoded = jwt.ver
+             const decoded = jwt.verify(token , process.env.JWT_SECRET)
+
+             //get the user from the token 
+             const user = await User.findByPk(decoded.id)
+
+             //exclude the password field from the user object because it's hashed
+             req.user = {
+                id: user.id,
+                nom: user.nom,
+                email : user.email,
+                isActive: user.isActive
+             }           
+             //proceed to the next middleware
+             next()
         } catch (error) {
-            
+            console.log(error)
+            res.status(401).json({message : 'Not authorized'})
         }
+    }
+    if(!token){
+        res.status(401).json({message : 'Not authorized, no token !'})
     }
 })
 

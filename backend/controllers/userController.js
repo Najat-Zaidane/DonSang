@@ -107,7 +107,19 @@ const loginUser = asyncHandler( async (req,res) => {
 //@access Private
 const getMe = asyncHandler( async (req, res) => {
     try {
-      res.status(200).json({message : 'the me data display'})  
+      const { id, nom , prenom , email , tele , role , isActive} = await User.findByPk(req.user.id)
+      res.status(200).json({
+        message : 'the me data', 
+        data : {
+            id,
+            nom,
+            prenom,
+            email,
+            tele,
+            role,
+            isActive,
+        }
+})  
     } catch (error) {
         res.status(500).json({message : 'Failed to fetch  the user data!'})
     }
