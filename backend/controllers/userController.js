@@ -1,3 +1,4 @@
+// registry , login , getting the user loged in data
 const asyncHandler = require('express-async-handler') // this function is used to simplify errors handling for asynchronous  functions that returns promises
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
