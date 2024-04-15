@@ -109,7 +109,7 @@ const getMe = asyncHandler( async (req, res) => {
     try {
       const { id, nom , prenom , email , tele , role , isActive} = await User.findByPk(req.user.id)
       res.status(200).json({
-        message : 'the me data', 
+        message : `${nom} data display `, 
         data : {
             id,
             nom,
