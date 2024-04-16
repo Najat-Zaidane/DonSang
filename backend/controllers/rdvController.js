@@ -1,18 +1,17 @@
 const asyncHandler = require('express-async-handler')
 const Rdv = require('../models/rdvModel')
 
+//NOTE : both createRDV and updtaeRDV, while testing them in postman, should use centerId , creneauId and userId already existing 
 //@desc set rdv
 //@routes POST /api/rdvs
 //@access Private
 const createRDV = asyncHandler(async (req,res) =>{
     try {
-        const {dateTime, status} = req.body;
+        const {date, status,creneauId, centerId} = req.body; // to re see ( creneauId)
 
-    if(!dateTime || !status){
+    if(!date || !status || !creneauId || !centerId){
         res.status(400).json({message : 'Please fill all the field'})
     }
-
-    //check if there's a rdv already tooken at that datetime
 
     const newRdv = await Rdv.create(req.body)
     res.status(200).json({
@@ -25,6 +24,8 @@ const createRDV = asyncHandler(async (req,res) =>{
     }
 
 })
+
+//getting all rdv may be for both user (so he can get all of his rdv) and admin 
 
 //@desc Get rdvs
 //@route GET /api/rdvs
@@ -57,19 +58,22 @@ try {
 //@desc Update rdv 
 //@route Put /api/rdvs/:id
 //@access Private 
-const  updateRDV = asyncHandler(async (req , res , next)=> {
+
+const  updateRDV = asyncHandler(async (req , res )=> {
     try {
-        const {dateTime, status} = req.body
-        // //1- check if the user is owner of this task
-        //  const rdv = await Rdv.findByPk(req.params.id)
-        //  if(rdv.user.toString() !== req.user.id){
-        //      return res.status(401).json({ message: 'You are not authorized' })
-        //  } else {
-        //   rdv = await rdv.update ({ dateTime, status });
-        //    res.status(201).json(rdv);
-        //  }
+        const {date, status,creneauId, centerId} = req.body;
+        const [updatedRowsCount] = await Rdv.update({date, status,creneauId, centerId } ,{
+            where : {id : req.params.id}
+        })
+
+        if(updatedRowsCount === 0 ){
+            res.status(404).json({message : "Please fill the fields ( date, status,creneauId, centerId ) to update"})
+        } else {
+            const rdv = await Rdv.findByPk(req.params.id)
+            res.status(200).json({message : `Update center ${req.params.id} successfuly`, data: rdv})
+        }
     } catch (error) {
-        res.status(500).json({ message: 'Failed to update center' });
+        res.status(500).json({ message: 'Failed to update rdv' });
     }
 })
 
@@ -91,10 +95,6 @@ try {
     res.status(500).json({ message: 'Failed to delete the rdv.' });
 }
 })
-
-
-
-
 
 
 module.exports = {

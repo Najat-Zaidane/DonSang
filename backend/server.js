@@ -27,6 +27,7 @@ app.use(express.urlencoded({extended: false}))
 app.use('/api/centers',require('./routes/centerRoutes'))
 app.use('/api/users',require('./routes/userRoutes'))
 app.use('/api/rdvs',require('./routes/rdvRoutes'))
+app.use('/api/creneaus',require('./routes/creneauRoutes'))
 
 app.use(errorHandler)
 

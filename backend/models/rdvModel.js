@@ -1,18 +1,19 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../config/dbConfig'); // Assuming your config file path
+const sequelize = require('../config/dbConfig'); 
 const User = require('./userModel')
 const Center = require('./centerModel')
 const Creneau = require('./creneauModel')
 
 const Rdv = sequelize.define("rdv", {
-  dateTime: {
-    type: Sequelize.DATE, // Use DATE for both date and time
+  date: {
+    type: Sequelize.DATEONLY,
     allowNull: false,
   },
   status: { // Appointment status
     type: Sequelize.STRING,
     allowNull: false,
-    values: ['validé', 'non validé', 'annulé'], // Restrict status values
+    defaultValue : 'non validé',
+    values: ['validé', 'non validé', 'annulé'], 
   },
 });
 
