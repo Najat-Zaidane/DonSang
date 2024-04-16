@@ -26,8 +26,33 @@ const createRDV = asyncHandler(async (req,res) =>{
 
 })
 
+//@desc Get rdvs
+//@route GET /api/rdvs
+//@access Private 
+const getRDVs= asyncHandler(async (req , res)=>{
+    try {
+        const rdvs = await Rdv.findAll()
+        res.status(200).json(rdvs) 
+    } catch (error) {
+        res.status(500).json({message : "Failed to get the rdvs"})
+    }
+})
 
-
+//@desc Get rdv bi ID
+//@route GET /api/rdvs/:id
+//@access Private 
+const getRDVByID = asyncHandler (async (req,res)=>{
+try {
+    const rdv = await Rdv.findByPk(req.params.id)
+    if(!rdv){
+        res.status(404).json({message : "RDV not Found"})
+    }else {
+        res.status(200).json(rdv)
+    }
+} catch (error) {
+    res.status(500).json({message : "Failed to fetch the rdv ! "})
+}
+})
 
 
 
@@ -38,4 +63,6 @@ const createRDV = asyncHandler(async (req,res) =>{
 
 module.exports = {
     createRDV,
+    getRDVs,
+    getRDVByID
 }

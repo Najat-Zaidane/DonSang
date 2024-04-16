@@ -1,7 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const {createRDV} = require('../controllers/rdvController')
+const {createRDV, getRDVs, getRDVByID} = require('../controllers/rdvController')
 
-router.post('/',createRDV)
+router.route('/').post(createRDV).get(getRDVs) 
+router.route('/:id').get(getRDVByID)
+
+
 
 module.exports = router
