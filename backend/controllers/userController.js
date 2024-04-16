@@ -69,6 +69,7 @@ const loginUser = asyncHandler( async (req,res) => {
         const user = await User.findOne({where : {email : email}})
         //chekcking the pwd
         const validPwd = await bcrypt.compare(pwd, user.pwd) 
+        //const to pass to the generate token
         if(user && validPwd ){
             res.status(200).json({
                 message: 'user logged in successfuly',
@@ -129,6 +130,7 @@ const getMe = asyncHandler( async (req, res) => {
 //Generate the JWT
 //sign a new token with the id passed in and the secret used
 const generateToken = (id) => {
+    //should return a ole as well to manage roles ( admin)
     return jwt.sign({id} , process.env.JWT_SECRET,{
         expiresIn : '30d', // token will expire in 30 days
     } )

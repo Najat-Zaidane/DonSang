@@ -28,7 +28,8 @@ const protect = asyncHandler ( async (req, res , next ) =>{
                 id: user.id,
                 nom: user.nom,
                 email : user.email,
-                isActive: user.isActive
+                role : user.role,
+                isActive: user.isActive,
              }           
              //proceed to the next middleware
              next()

@@ -7,28 +7,6 @@ const dotenv = require('dotenv').config()
 const {errorHandler} = require('./middleware/errorMiddleware')
 const port = process.env.port  || 5000
 
-// const dbConfig = require('./config/dbConfig'); 
-// const  Sequelize  = require('sequelize');
-
-// const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-//     host: dbConfig.HOST,
-//     dialect: dbConfig.dialect,
-//     pool: dbConfig.pool
-//   });
-
-//   //testing the  database connection
-//   sequelize.authenticate()
-//   .then(() => console.log('Database connected...'))
-//   .catch(err => console.error('Error:', err));
-
-//   (async () => {
-//     try {
-//         await sequelize.authenticate();
-//         console.log('Connection has been established successfully.');
-//     } catch (error) {
-//         console.error('Unable to connect to the database:', error);
-//     }
-
 const app = express()
 
  //cors 
@@ -48,6 +26,7 @@ app.use(express.urlencoded({extended: false}))
 //add here all the ressources routes
 app.use('/api/centers',require('./routes/centerRoutes'))
 app.use('/api/users',require('./routes/userRoutes'))
+app.use('/api/rdvs',require('./routes/rdvRoutes'))
 
 app.use(errorHandler)
 
