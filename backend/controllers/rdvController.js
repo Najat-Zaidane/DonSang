@@ -38,7 +38,7 @@ const getRDVs= asyncHandler(async (req , res)=>{
     }
 })
 
-//@desc Get rdv bi ID
+//@desc Get rdv by ID
 //@route GET /api/rdvs/:id
 //@access Private 
 const getRDVByID = asyncHandler (async (req,res)=>{
@@ -55,6 +55,24 @@ try {
 })
 
 
+//@desc Update rdv 
+//@route Put /api/rdvs/:id
+//@access Private 
+const  updateRDV = asyncHandler(async (req , res , next)=> {
+    try {
+        const {dateTime, status} = req.body
+        //1- check if the user is owner of this task
+         const rdv = await Rdv.findByPk(req.params.id)
+         if(rdv.user.toString() !== req.user.id){
+             return res.status(401).json({ message: 'You are not authorized' })
+         } else {
+          rdv = await rdv.update ({ dateTime, status });
+           res.status(201).json(rdv);
+         }
+    } catch (error) {
+        
+    }
+})
 
 
 
@@ -64,5 +82,6 @@ try {
 module.exports = {
     createRDV,
     getRDVs,
-    getRDVByID
+    getRDVByID,
+    updateRDV,
 }
