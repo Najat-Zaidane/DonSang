@@ -78,13 +78,17 @@ const  updateRDV = asyncHandler(async (req , res , next)=> {
 //@access Private 
 const  deleteRDV = asyncHandler(async (req , res ,next )=> {
 try {
-    const  rdv = await Rdv.findByPk(req.params.id)
-     if (!rdv) {
-         return res.status(404).json({ message: 'This rdv does not exist.' })
-     }
+    const deletedRowsCount = await Rdv.destroy({
+        where : {id : req.params.id}
+    })
+    if(deletedRowsCount === 0 ){
+        res.status(404).json({message : "RDV not found"})
+    } else {
+        res.status(200).json({message : `Delete RDV ${req.params.id} successfuly` })
+    }
     
 } catch (error) {
-    res.status(500).json({ message: 'Failed to delete RDV ! ' });
+    res.status(500).json({ message: 'Failed to delete the rdv.' });
 }
 })
 

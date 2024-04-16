@@ -26,10 +26,10 @@ const protect = asyncHandler ( async (req, res , next ) =>{
              //exclude the password field from the user object because it's hashed
              req.user = {
                 id: user.id,
-                nom: user.nom,
-                email : user.email,
+                //nom: user.nom,
+                //email : user.email,
                 role : user.role,
-                isActive: user.isActive,
+                //isActive: user.isActive,
              }           
              //proceed to the next middleware
              next()
