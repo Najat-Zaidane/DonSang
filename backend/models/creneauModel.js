@@ -11,11 +11,10 @@ const Creneau = sequelize.define("creneau",{
         type : Sequelize.STRING,
         allowNull : false, 
     },
-    //capacité
 })
 
 //define the association between Creneau and Center via the method : belongsToMany ( bi-derctionnal)
 //centerCrenau is the association table
-Creneau.belongsToMany(Center, { through: 'CenterCreneau', foreignKey: 'creneauId' })
+Creneau.belongsToMany(Center, { through: 'centcrens', foreignKey: 'creneauId' })
 
 module.exports = Creneau;
