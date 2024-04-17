@@ -65,7 +65,7 @@ const updateCreneau = asyncHandler(async (req,res,next)=> {
     try {
         const {startTime, endTime} = req.body
         const [updatedRowsCount2]  = await Creneau.update({startTime,endTime}, {
-            where:{id:req.params.is}
+            where:{id:req.params.id}
         })
 
         if(updatedRowsCount2 === 0) {
@@ -73,7 +73,7 @@ const updateCreneau = asyncHandler(async (req,res,next)=> {
         } else {
             res.status(200).json({
                 message : 'Creneau updated successfuly', 
-                data :  updatedRowsCount2 ,
+                data :  req.body ,
         })
         }
     } catch (error) {
