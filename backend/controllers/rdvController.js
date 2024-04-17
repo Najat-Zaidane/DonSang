@@ -8,10 +8,10 @@ const { where } = require('sequelize');
 //@access Private
 const createRDV = asyncHandler(async (req,res) =>{
     try {
-        const {date, status,creneauId, centerId} = req.body; // to re see ( creneauId)
+        const {date, status,creneauId, centerId} = req.body; // to re see ( userId)
 
     if(!date || !status || !creneauId || !centerId){
-        res.status(400).json({message : 'Please fill all the field'})
+        res.status(400).json({message : 'Please fill all the fields ( date , status, creneauId, centerId)'})
     }
 
     const newRdv = await Rdv.create(req.body)
