@@ -54,9 +54,6 @@ const  getCenterById =asyncHandler( async (req ,res) =>{
 const updateCenter = asyncHandler (async (req, res) => {
     try {
         const { nom, adresse, email } = req.body;
-        // if(!nom || !adresse || !email) {
-        //     res.status(401).json({message : 'Please fill the fields ( nom, email , adresse ) to update'})
-        // }
         const [updatedRowsCount] = await Center.update({ nom, adresse, email } ,{
             where : {id : req.params.id}
         })

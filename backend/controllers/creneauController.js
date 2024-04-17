@@ -46,7 +46,7 @@ const  getCreneauById = asyncHandler(async (req , res)=>{
         const  creneau = await Creneau.findByPk(req.params.id)
         if(creneau){
             res.status(200).json({ 
-                message : `The ${creneau.id}  creneau was found`,
+                message : `The creneau id number ${creneau.id}   was found`,
                 data: creneau
             })
         } else{
@@ -58,9 +58,33 @@ const  getCreneauById = asyncHandler(async (req , res)=>{
     }
 })
 
+// @desc Update a creneau
+// @route Put /api/creneaus/:id
+// @access Private
+const updateCreneau = asyncHandler(async (req,res,next)=> {
+    try {
+        const {startTime, endTime} = req.body
+        const [updatedRowsCount2]  = await Creneau.update({startTime,endTime}, {
+            where:{id:req.params.is}
+        })
+
+        if(updatedRowsCount2 === 0) {
+            res.status(404).json({message : "Please fill the fields ( startTime, endTime) to update"})
+        } else {
+            res.status(200).json({
+                message : 'Creneau updated successfuly', 
+                data :  updatedRowsCount2 ,
+        })
+        }
+    } catch (error) {
+        res.status(400).json({message:"Error updating the creneau!"})
+    }
+})
+
 module.exports = {
     createCreneau,
     getAllCreneaux,
-    getCreneauById
+    getCreneauById,
+    updateCreneau,
 
 }
