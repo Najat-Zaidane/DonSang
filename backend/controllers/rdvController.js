@@ -33,7 +33,7 @@ const createRDV = asyncHandler(async (req,res) =>{
 //@access Private 
 const getRDVs= asyncHandler(async (req , res)=>{
     try {
-        const rdvs = await Rdv.findAll({where : { user : req.params.id}})
+        const rdvs = await Rdv.findAll({where : { userId : req.user.id}})
         res.status(200).json(rdvs) 
     } catch (error) {
         res.status(500).json({message : "Failed to get the rdvs"})
