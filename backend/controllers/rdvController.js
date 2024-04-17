@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler')
-const Rdv = require('../models/rdvModel')
+const Rdv = require('../models/rdvModel');
+const { where } = require('sequelize');
 
 //NOTE : both createRDV and updtaeRDV, while testing them in postman, should use centerId , creneauId and userId already existing 
 //@desc set rdv
@@ -32,7 +33,7 @@ const createRDV = asyncHandler(async (req,res) =>{
 //@access Private 
 const getRDVs= asyncHandler(async (req , res)=>{
     try {
-        const rdvs = await Rdv.findAll()
+        const rdvs = await Rdv.findAll({where : { user : req.params.id}})
         res.status(200).json(rdvs) 
     } catch (error) {
         res.status(500).json({message : "Failed to get the rdvs"})
