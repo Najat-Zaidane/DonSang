@@ -63,6 +63,8 @@ const  getCreneauById = asyncHandler(async (req , res)=>{
 // @access Private
 const updateCreneau = asyncHandler(async (req,res,next)=> {
     try {
+        const   creneau = await Creneau.findByPk(req.params.id);
+        if(creneau) {
         const {startTime, endTime} = req.body
         const [updatedRowsCount2]  = await Creneau.update({startTime,endTime}, {
             where:{id:req.params.id}
@@ -76,15 +78,37 @@ const updateCreneau = asyncHandler(async (req,res,next)=> {
                 data :  req.body ,
         })
         }
+    } else {
+        res.status(404).json({message : 'The creneau is not found, check the id passed !'})
+    }
     } catch (error) {
         res.status(400).json({message:"Error updating the creneau!"})
     }
 })
+
+//@desc delete Creneau
+//@route Delete /api/creneaus/:id
+//@access Private
+const deleteCreneau = asyncHandler( async (req,res) => {
+    try {
+        const  deletedCreneau = await Creneau.destroy({ where : {id : req.params.id}})
+        if(deletedCreneau === 0){
+            res.status(404).json({message : "Creneau not found"})
+        } else {
+            res.status(200).json({message : `Delete center ${req.params.id} successfuly` })
+        
+        }
+        
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to delete the creneau.' });
+    }  
+})
+
 
 module.exports = {
     createCreneau,
     getAllCreneaux,
     getCreneauById,
     updateCreneau,
-
+    deleteCreneau,
 }
