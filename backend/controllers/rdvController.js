@@ -39,21 +39,21 @@ const getRDVs= asyncHandler(async (req , res)=>{
     }
 })
 
-//@desc Get rdv by ID
-//@route GET /api/rdvs/:id
-//@access Private 
-const getRDVByID = asyncHandler (async (req,res)=>{
-try {
-    const rdv = await Rdv.findByPk(req.params.id)
-    if(!rdv){
-        res.status(404).json({message : "RDV not Found, please check the id passed !"})
-    }else {
-        res.status(200).json(rdv)
-    }
-} catch (error) {
-    res.status(500).json({message : "Failed to fetch the rdv ! "})
-}
-})
+// //@desc Get rdv by ID
+// //@route GET /api/rdvs/:id
+// //@access Private 
+// const getRDVByID = asyncHandler (async (req,res)=>{
+// try {
+//     const rdv = await Rdv.findByPk(req.params.id)
+//     if(!rdv){
+//         res.status(404).json({message : "RDV not Found, please check the id passed !"})
+//     }else {
+//         res.status(200).json(rdv)
+//     }
+// } catch (error) {
+//     res.status(500).json({message : "Failed to fetch the rdv ! "})
+// }
+// })
 
 //@desc Update rdv 
 //@route Put /api/rdvs/:id
@@ -91,7 +91,7 @@ try {
         where : {id : req.params.id}
     })
     if(deletedRowsCount === 0 ){
-        res.status(404).json({message : "RDV not found"})
+        res.status(404).json({message : "RDV not found, please check the id passed !"})
     } else {
         res.status(200).json({message : `Delete RDV ${req.params.id} successfuly` })
     }
