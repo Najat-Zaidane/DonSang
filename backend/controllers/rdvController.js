@@ -14,7 +14,13 @@ const createRDV = asyncHandler(async (req,res) =>{
         res.status(400).json({message : 'Please fill all the fields ( date , status, creneauId, centerId)'})
     }
 
-    const newRdv = await Rdv.create(req.body)
+    const newRdv = await Rdv.create({
+        date : req.body.date,
+        status : req.body.status,
+        creneauId : req.body.creneauId,
+        centerId: req.body.centerId,
+        userId: req.user.id,
+    })
     res.status(200).json({
         message : 'RDV created successfuly',
         data : newRdv
