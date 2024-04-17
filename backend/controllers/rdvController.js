@@ -55,10 +55,12 @@ const getRDVs= asyncHandler(async (req , res)=>{
 // }
 // })
 
+
+
+
 //@desc Update rdv 
 //@route Put /api/rdvs/:id
 //@access Private 
-
 const  updateRDV = asyncHandler(async (req , res )=> {
     try {
         const rdvInitial = await Rdv.findByPk(req.params.id);
@@ -105,7 +107,7 @@ try {
 module.exports = {
     createRDV,
     getRDVs,
-    getRDVByID,
+   // getRDVByID,
     updateRDV,
     deleteRDV
 }

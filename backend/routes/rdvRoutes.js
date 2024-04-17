@@ -3,9 +3,9 @@ const router = express.Router()
 const {createRDV, getRDVs, getRDVByID, updateRDV, deleteRDV } = require('../controllers/rdvController')
 const { protect } = require('../middleware/authMiddleware')
 
-
-router.route('/').post(createRDV).get(protect,getRDVs) 
-router.route('/:id').put(updateRDV).delete(deleteRDV)
+//all the routes need to be protected
+router.route('/').post(protect,createRDV).get(protect,getRDVs) 
+router.route('/:id').put(protect,updateRDV).delete(protect,deleteRDV)
 //router.route('/:id').get(getRDVByID).put(updateRDV).delete(deleteRDV)
 
 
