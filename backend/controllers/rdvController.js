@@ -26,7 +26,6 @@ const createRDV = asyncHandler(async (req,res) =>{
 
 })
 
-//getting all rdv may be for both user (so he can get all of his rdv) and admin 
 
 //@desc Get rdvs
 //@route GET /api/rdvs
