@@ -46,7 +46,7 @@ const getRDVByID = asyncHandler (async (req,res)=>{
 try {
     const rdv = await Rdv.findByPk(req.params.id)
     if(!rdv){
-        res.status(404).json({message : "RDV not Found"})
+        res.status(404).json({message : "RDV not Found, please check the id passed !"})
     }else {
         res.status(200).json(rdv)
     }
@@ -61,6 +61,8 @@ try {
 
 const  updateRDV = asyncHandler(async (req , res )=> {
     try {
+        const rdvInitial = await Rdv.findByPk(req.params.id);
+        if(rdvInitial) {
         const {date, status,creneauId, centerId} = req.body;
         const [updatedRowsCount] = await Rdv.update({date, status,creneauId, centerId } ,{
             where : {id : req.params.id}
@@ -72,6 +74,9 @@ const  updateRDV = asyncHandler(async (req , res )=> {
             const rdv = await Rdv.findByPk(req.params.id)
             res.status(200).json({message : `Update center ${req.params.id} successfuly`, data: rdv})
         }
+    } else {
+        res.status(404).json({message : ' RDV not found, please check the id passed !'})
+    }
     } catch (error) {
         res.status(500).json({ message: 'Failed to update rdv' });
     }

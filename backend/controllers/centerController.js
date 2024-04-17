@@ -39,7 +39,7 @@ const  getCenterById =asyncHandler( async (req ,res) =>{
     try {
         const center = await Center.findByPk(req.params.id);
         if(!center){
-            res.status(404).json({message : "Center not Found"})
+            res.status(404).json({message : "Center not Found, please check the id passed !"})
         } else {
             res.status(200).json(center)
         }
@@ -53,6 +53,8 @@ const  getCenterById =asyncHandler( async (req ,res) =>{
 // @access Private
 const updateCenter = asyncHandler (async (req, res) => {
     try {
+        const center = await Center.findByPk(req.params.id)
+        if(center){
         const { nom, adresse, email } = req.body;
         const [updatedRowsCount] = await Center.update({ nom, adresse, email } ,{
             where : {id : req.params.id}
@@ -64,6 +66,9 @@ const updateCenter = asyncHandler (async (req, res) => {
             const center = await Center.findByPk(req.params.id)
             res.status(200).json({message : `Update center ${req.params.id}`, data: center})
         }
+    }else {
+        res.status(404).json({message : 'The center is not found, please check the id passed !'})
+    }
     } catch (error) {
         res.status(500).json({ message: 'Failed to update center' });
     }
@@ -79,7 +84,7 @@ const deleteCenter = asyncHandler ( async (req, res) => {
             where : {id : req.params.id}
         })
         if(deletedRowsCount === 0 ){
-            res.status(404).json({message : "Center not found"})
+            res.status(404).json({message : "Center not found, please check the id passed !"})
         } else {
             res.status(200).json({message : `Delete center ${req.params.id} successfuly` })
         }
