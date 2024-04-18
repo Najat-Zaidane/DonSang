@@ -7,7 +7,6 @@ const { where } = require('sequelize');
 //@routes POST /api/rdvs
 //@access Private
 const createRDV = asyncHandler(async (req,res) =>{
-    try {
         const {date, status,creneauId, centerId} = req.body; // to re see ( userId)
 
     if(!date || !status || !creneauId || !centerId){
@@ -26,12 +25,8 @@ const createRDV = asyncHandler(async (req,res) =>{
     res.status(200).json({
         message : 'RDV created successfuly',
         data : newRdv
-    }) }else { res.status.json({message :'This appointment already exists for this day and time' })}
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({message : 'Failed to create the Rdv !'})
-    }
-
+    }) }else { res.status(401).json({message :'This appointment already exists for this day and time' })}
+    
 })
 
 
