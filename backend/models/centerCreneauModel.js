@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../config/dbConfig')
 
-const CentCren = sequelize.define("centcren",{
+const CentCren = sequelize.define("CenterCreneau",{
     centerId : {
         type : Sequelize.INTEGER, 
         allowNull : false, 

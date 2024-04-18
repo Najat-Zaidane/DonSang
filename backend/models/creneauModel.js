@@ -15,6 +15,6 @@ const Creneau = sequelize.define("creneau",{
 
 //define the association between Creneau and Center via the method : belongsToMany ( bi-derctionnal)
 //centerCrenau is the association table
-Creneau.belongsToMany(Center, { through: 'centcrens', foreignKey: 'creneauId' })
+Creneau.belongsToMany(Center, { through: 'CenterCreneaus', foreignKey: 'creneauId'})
 
 module.exports = Creneau;

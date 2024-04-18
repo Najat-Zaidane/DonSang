@@ -1,7 +1,11 @@
 const express = require('express')
-const { createCentCren } = require('../controllers/centerCreneauController')
+const { createAssoc, getCrenByCenterId, updateAssocByCenterId, removeAssoc } = require('../controllers/centerCreneauController')
 const router = express.Router()
 
-router.post('/',createCentCren)
+router.post('/',createAssoc)
+router.get('/:id',getCrenByCenterId)
+router.put('/',updateAssocByCenterId)
+router.delete('/', removeAssoc)
+
 
 module.exports = router
