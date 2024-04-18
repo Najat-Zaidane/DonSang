@@ -70,17 +70,16 @@ const updateAssocByCenterId = asyncHandler( async (req , res )=>{
         const creneau = await Creneau.findOne({where : {id : req.body.creneauId}})
         if(center && creneau){
           const UpdatedAssoc =  await CentCren.update({ where: {centerId : req.body.centerId , creneauId : req.body.creneauId}});
-          const Associations = await CentCren.findAll()
+          //const Associations = await CentCren.findAll()
             res.status(200).json({
                 message : 'Association updated successfuly , the new asssocations are : ',
-                data: Associations
+                data: UpdatedAssoc
             })
     }else {
         res.status(404).json('Center or creneau not found, check the ids given')
     }
     }      
-    
-    
+     
 })
 
 // supression d'une association 
