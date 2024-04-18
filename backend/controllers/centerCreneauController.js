@@ -69,12 +69,21 @@ const updateAssocByCenterId = asyncHandler( async (req , res )=>{
         const center = await Center.findOne({where : {id : req.body.centerId}})
         const creneau = await Creneau.findOne({where : {id : req.body.creneauId}})
         if(center && creneau){
-          const UpdatedAssoc =  await CentCren.update({ where: {centerId : req.body.centerId , creneauId : req.body.creneauId}});
-          //const Associations = await CentCren.findAll()
-            res.status(200).json({
-                message : 'Association updated successfuly , the new asssocations are : ',
-                data: UpdatedAssoc
-            })
+
+            const [updatedRowsCount] = await CentCren.update(
+                { centerId: centerId, creneauId: creneauId }, //the fields to update
+                { where: { centerId: centerId } } // the condition
+            );
+
+         if (updatedRowsCount > 0) {
+                    const Associations = await CentCren.findAll()
+                    res.status(200).json({
+                        message: "Association updated successfully",
+                        data : Associations
+                    });
+                } else {
+                    res.status(404).json({ message: "No association found to update" });
+                }
     }else {
         res.status(404).json('Center or creneau not found, check the ids given')
     }

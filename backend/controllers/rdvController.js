@@ -13,7 +13,9 @@ const createRDV = asyncHandler(async (req,res) =>{
     if(!date || !status || !creneauId || !centerId){
         res.status(400).json({message : 'Please fill all the fields ( date , status, creneauId, centerId)'})
     }
-
+    const  rdvExist = await Rdv.findOne({where:{date:date, creneauId:creneauId}})
+    
+    if(!rdvExist){ 
     const newRdv = await Rdv.create({
         date : req.body.date,
         status : req.body.status,
@@ -24,7 +26,7 @@ const createRDV = asyncHandler(async (req,res) =>{
     res.status(200).json({
         message : 'RDV created successfuly',
         data : newRdv
-    })
+    }) }else { res.status.json({message :'This appointment already exists for this day and time' })}
     } catch (error) {
         console.error(error);
         res.status(500).json({message : 'Failed to create the Rdv !'})
