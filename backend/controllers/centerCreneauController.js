@@ -62,7 +62,24 @@ const getCrenByCenterId = asyncHandler ( async (req,res) =>{
 //@route  PUT /api/centCren/:id
 //@access Private
 const updateAssocByCenterId = asyncHandler( async (req , res )=>{
-    const {centerId, creneauId} = req.body 
+    const {centerId, creneauId} = req.body
+    if( !centerId || !creneauId ){
+        res.status(401).json({message  : "Missing fields :centerId and creneauId "})
+    } else {
+        const center = await Center.findOne({where : {id : req.body.centerId}})
+        const creneau = await Creneau.findOne({where : {id : req.body.creneauId}})
+        if(center && creneau){
+          const UpdatedAssoc =  await CentCren.update({ where: {centerId : req.body.centerId , creneauId : req.body.creneauId}});
+          const Associations = await CentCren.findAll()
+            res.status(200).json({
+                message : 'Association updated successfuly , the new asssocations are : ',
+                data: Associations
+            })
+    }else {
+        res.status(404).json('Center or creneau not found, check the ids given')
+    }
+    }      
+    
     
 })
 
