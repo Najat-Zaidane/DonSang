@@ -2,12 +2,15 @@ import React  from "react";
 import {View, StyleSheet,TextInput, TouchableOpacity} from 'react-native'
 import Text from '@kaloraat/react-native-text'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import Logo from "../components/Logo";
 
 const Register = () => {
 
     return(
-        <KeyboardAwareScrollView>
-        <View style={styles.container}>
+        <KeyboardAwareScrollView contentContainerStyle={styles.container}>
+        <View style={styles.form}>
+
+            <Logo/>
 
             {/* Registry  Form Title*/}
             <Text title center style= {styles.title}>Créer un compte</Text>
@@ -61,7 +64,7 @@ const Register = () => {
 
             <Text center >
               Vous avez déjà un compte ?
-              <Text color="#ff2222" onPress={() => navigation.navigate('Login')}> Connectez vous !</Text>
+              <Text color="#CC6A6A" onPress={() => navigation.navigate('Login')}> Connectez vous !</Text>
             </Text> 
 
                 
@@ -75,7 +78,13 @@ const Register = () => {
 export default Register;
 
 const styles = StyleSheet.create({
-    container : {
+    container: {
+        backgroundColor: "#f0f3f5",
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+    form : {
         flex : 1,
         justifyContent : 'center',
     },
