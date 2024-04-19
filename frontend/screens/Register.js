@@ -17,7 +17,7 @@ const Register = () => {
                 <TextInput
                 style = {styles.input}
                 placeholder="Nom"
-                onChangeText={(text) => console.log(text)}
+                //onChangeText={(text) => console.log(text)}
                 />
 
                 {/* Prenom */}
@@ -27,8 +27,31 @@ const Register = () => {
                 />
 
                 {/* email */}
+                <TextInput 
+                style={styles.input}
+                placeholder="Email"
+                keyboardType="email-address"
+                />
                 {/* number */}
+                <TextInput
+                style={styles.input}
+                placeholder="Numéro de téléphone"
+                keyboardType='numeric'
+                />
 
+                {/*  Password */}
+                <TextInput 
+                style={styles.input}
+                placeholder="Mot de passe"
+                secureTextEntry
+                />
+
+                {/* Passsword confirmation */}
+                <TextInput
+                style={styles.input}
+                placeholder="Confirmation du mot de passe"
+                secureTextEntry
+                />
 
 
                 
