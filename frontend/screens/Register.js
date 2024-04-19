@@ -63,7 +63,7 @@ const Register = () => {
 
             <Text center >
               Vous avez déjà un compte ?
-              <Text color="#CC6A6A" onPress={() => navigation.navigate('Login')}> Connectez vous !</Text>
+              <Text color="#CE1A19" onPress={() => navigation.navigate('Login')}> Connectez vous !</Text>
             </Text> 
 
                 

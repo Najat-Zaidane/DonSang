@@ -2,13 +2,12 @@ import React  from "react";
 import {View, StyleSheet,TextInput, TouchableOpacity} from 'react-native'
 import Text from '@kaloraat/react-native-text'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import Logo from "../components/Logo";
-
+import LogoCopy from "../components/LogoCopy";
 const Register = () => {
 
     return(
         <KeyboardAwareScrollView contentContainerStyle={styles.container}>
-             <Logo/>
+             <LogoCopy/>
         <View style={styles.form}>
 
             {/* LOGIN  Form Title*/}
@@ -36,11 +35,10 @@ const Register = () => {
             </TouchableOpacity>
 
             <Text center >
-              Vous avez déjà un compte ?
-              <Text color="#CC6A6A" onPress={() => navigation.navigate('Login')}> Connectez vous !</Text>
+            Vous n'avez pas de compte ?
+              <Text color="#CE1A19" onPress={() => navigation.navigate('Register')}> Créez-en un !</Text>
             </Text> 
 
-                
             </View>
         </View>
         </KeyboardAwareScrollView>
