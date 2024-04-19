@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler')
 const Rdv = require('../models/rdvModel');
 const { where } = require('sequelize');
+const User = require('../models/userModel');
 
 //NOTE : both createRDV and updtaeRDV, while testing them in postman, should use centerId , creneauId and userId already existing 
 //@desc set rdv
@@ -12,7 +13,7 @@ const createRDV = asyncHandler(async (req,res) =>{
     if(!date || !status || !creneauId || !centerId){
         res.status(400).json({message : 'Please fill all the fields ( date , status, creneauId, centerId)'})
     }
-    const  rdvExist = await Rdv.findOne({where:{date:date, creneauId:creneauId}})
+    const  rdvExist = await Rdv.findOne({where:{date:date, creneauId:creneauId , userId : req.user.id}})
     
     if(!rdvExist){ 
     const newRdv = await Rdv.create({
@@ -65,10 +66,15 @@ const getRDVs= asyncHandler(async (req , res)=>{
 //@route Put /api/rdvs/:id
 //@access Private 
 const  updateRDV = asyncHandler(async (req , res )=> {
-    try {
+  
         const rdvInitial = await Rdv.findByPk(req.params.id);
         if(rdvInitial) {
         const {date, status,creneauId, centerId} = req.body;
+        //a user 1 should not be able to update a user 2 rdv 
+        const user = await User.findByPk(req.user.id)
+        if(user.id  !== rdvInitial.userId ){
+            return res.status(401).json({ message: 'You are not authorized' });
+        } else {
         const [updatedRowsCount] = await Rdv.update({date, status,creneauId, centerId } ,{
             where : {id : req.params.id}
         })
@@ -78,19 +84,17 @@ const  updateRDV = asyncHandler(async (req , res )=> {
         } else {
             const rdv = await Rdv.findByPk(req.params.id)
             res.status(200).json({message : `Update center ${req.params.id} successfuly`, data: rdv})
-        }
-    } else {
+        } }
+        } 
+    else {
         res.status(404).json({message : ' RDV not found, please check the id passed !'})
-    }
-    } catch (error) {
-        res.status(500).json({ message: 'Failed to update rdv' });
     }
 })
 
 //@desc Delete rdv 
 //@route DELETE /api/rdvs/:id
 //@access Private 
-const  deleteRDV = asyncHandler(async (req , res ,next )=> {
+const  deleteRDV = asyncHandler(async (req , res  )=> {
 try {
     const deletedRowsCount = await Rdv.destroy({
         where : {id : req.params.id}
