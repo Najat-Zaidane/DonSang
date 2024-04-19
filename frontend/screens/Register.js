@@ -2,6 +2,7 @@ import React  from "react";
 import {View, StyleSheet,TextInput} from 'react-native'
 import Text from '@kaloraat/react-native-text'
 
+
 const Register = () => {
     return(
         <View style={styles.container}>
@@ -11,11 +12,24 @@ const Register = () => {
 
             {/*  Registry Form */}
             <View style={{ marginHorizontal: 25 }}>
-                <Text semi color="#ff2222">Nom :</Text>
+               
                 {/* Nom */}
                 <TextInput
                 style = {styles.input}
+                placeholder="Nom"
+                onChangeText={(text) => console.log(text)}
                 />
+
+                {/* Prenom */}
+                <TextInput
+                style = {styles.input}
+                placeholder="Prénom"
+                />
+
+                {/* email */}
+                {/* number */}
+
+
 
                 
             </View>
