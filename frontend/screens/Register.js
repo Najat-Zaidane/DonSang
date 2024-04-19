@@ -1,10 +1,24 @@
 import React  from "react";
-import {Text, View, StyleSheet,TextInput} from 'react-native'
+import {View, StyleSheet,TextInput} from 'react-native'
+import Text from '@kaloraat/react-native-text'
 
 const Register = () => {
     return(
         <View style={styles.container}>
-            <Text style= {styles.text}>This is the Register Page.</Text>
+
+            {/* Registry  Form Title*/}
+            <Text title center style= {styles.title}>Créer un compte</Text>
+
+            {/*  Registry Form */}
+            <View style={{ marginHorizontal: 25 }}>
+                <Text semi color="#ff2222">Nom :</Text>
+                {/* Nom */}
+                <TextInput
+                style = {styles.input}
+                />
+
+                
+            </View>
         </View>
     )
 
@@ -17,8 +31,17 @@ const styles = StyleSheet.create({
         flex : 1,
         justifyContent : 'center',
     },
-    text : {
-        fontSize : 24,
-        color: '#333',
-    }
+    title: {
+        color: "#003CA6",
+        marginBottom: 12,
+        marginTop : -5,
+      },
+    input: {
+        borderBottomWidth: 1.1,
+        borderBottomColor: '#8e93a1',
+        marginBottom: 12,
+        padding: 13, 
+        fontSize: 18,
+        color: '#1D1D1D',
+      },
 })
