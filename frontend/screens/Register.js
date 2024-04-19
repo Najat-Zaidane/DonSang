@@ -8,9 +8,8 @@ const Register = () => {
 
     return(
         <KeyboardAwareScrollView contentContainerStyle={styles.container}>
+             <Logo/>
         <View style={styles.form}>
-
-            <Logo/>
 
             {/* Registry  Form Title*/}
             <Text title center style= {styles.title}>Créer un compte</Text>
@@ -92,13 +91,14 @@ const styles = StyleSheet.create({
         color: "#003CA6",
         marginBottom: 12,
         marginTop : -5,
+        fontSize:27
       },
     input: {
-        borderBottomWidth: 1.1,
+        borderBottomWidth: 1.0,
         borderBottomColor: '#8e93a1',
         marginBottom: 12,
-        padding: 13, 
-        fontSize: 18,
+        padding: 11, 
+        fontSize: 16,
         color: '#1D1D1D',
       },
       signUpButton: {
