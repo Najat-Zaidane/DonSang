@@ -96,7 +96,16 @@ const  updateRDV = asyncHandler(async (req , res )=> {
 //@route DELETE /api/rdvs/:id
 //@access Private 
 const  deleteRDV = asyncHandler(async (req , res  )=> {
-try {
+
+    //a user 1 should not be able to delet a user 2 rdv  ******
+    const rdvToDelete = await  Rdv.findByPk(req.params.id)
+    if(rdvToDelete){
+    const user = await User.findByPk(req.user.id)
+    //make sure the logged in user matches the user who created the rdv
+    if(user.id !== rdvToDelete.userId){
+        return res.status(401).json({ message: 'You are not authorized , you are not the user  who created this rdv' });
+    } 
+    else {
     const deletedRowsCount = await Rdv.destroy({
         where : {id : req.params.id}
     })
@@ -105,9 +114,9 @@ try {
     } else {
         res.status(200).json({message : `Delete RDV ${req.params.id} successfuly` })
     }
-    
-} catch (error) {
-    res.status(500).json({ message: 'Failed to delete the rdv.' });
+}}
+else {
+    res.status(404).json({message : ' RDV not found, please check the id passed !'})
 }
 })
 
