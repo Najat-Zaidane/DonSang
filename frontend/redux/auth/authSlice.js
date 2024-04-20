@@ -2,6 +2,7 @@
 // with redux tool kit, updating the state with what we get back from the server is gonna be easier
 //the createAsyncThunk is in order to have async functions to update the states
 import { createSlice , createAsyncThunk } from '@reduxjs/toolkit'
+import authService from './authService'
 
 // Get user from local Storage
 // the parse() is because the local storage can only have strings
@@ -16,6 +17,25 @@ const initialState = {
 }
 
 // creating the slice
+
+//Register user
+//the user we gonna get from the register component
+export const register = createAsyncThunk('auth/register',async(user , thunkApi) => {
+    try {
+        return await authService.register(user);
+    } catch (error) {
+        const message = 
+        (error.response && 
+        error.response.data && 
+        error.response.data.message) || 
+        error.message || 
+        error.toString()
+        
+        //to reject then send the error message as payload
+        return thunkApi.rejectWithValue(message)
+    }
+})
+
 
 export const authSlice = createSlice({
     name:'auth',
