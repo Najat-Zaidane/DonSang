@@ -1,10 +1,35 @@
-import React  from "react";
+import React, { useState }  from "react";
 import {View, StyleSheet,TextInput, TouchableOpacity} from 'react-native'
 import Text from '@kaloraat/react-native-text'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import LogoCopy from "../components/LogoCopy";
 
+
+
 const LoginScreen = ({navigation}) => {
+
+  const [formData,setFormData] = useState({
+    email : '',
+    password : '',
+  })
+
+  const {email, password} = formData 
+  
+//to handle the inputs change
+const onChangeText = (text , inputName) =>{
+  setFormData((prevState) => ({
+    ...prevState,
+    [inputName] : text
+  }))
+}
+
+//to handle submiting the form ****
+const OnPress = () => {
+  //send form data to the api/db 
+
+  //for now
+  console.log('Form submitted:', formData)
+}
 
     return(
         <KeyboardAwareScrollView contentContainerStyle={styles.container}>
@@ -22,6 +47,8 @@ const LoginScreen = ({navigation}) => {
                 style={styles.input}
                 placeholder="Email"
                 keyboardType="email-address"
+                value={email}
+                onChangeText={(text) => onChangeText(text,'email')}
                 />
 
                 {/*  Password */}
@@ -29,10 +56,12 @@ const LoginScreen = ({navigation}) => {
                 style={styles.input}
                 placeholder="Mot de passe"
                 secureTextEntry
+                value={password}
+                onChangeText={(text) => onChangeText(text, 'password')}
                 />
 
             <TouchableOpacity style={styles.signUpButton}>
-              <Text bold medium center style={styles.signUpButtonText}>Se connecter</Text>
+              <Text bold medium center style={styles.signUpButtonText} onPress={OnPress}>Se connecter</Text>
             </TouchableOpacity>
 
             <Text center >
