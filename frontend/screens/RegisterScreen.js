@@ -29,15 +29,12 @@ const RegisterScreen = () => {
   }
 
   //to handle submiting the form
-  const OnPress = (e) => {
-    //send form data to the api 
+  const OnPress = () => {
+    //send form data to the api/db 
 
     //for now
     console.log('Form submitted:', formData)
   }
-
-  
-
 
     return(
         <KeyboardAwareScrollView contentContainerStyle={styles.container}>
