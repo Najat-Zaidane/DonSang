@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
     container: {
       justifyContent: "center",
       alignItems: "center",
-      marginTop: 0,
-      marginBottom :-95,
+      marginTop: 30,
+      marginBottom :-100,
     },
     logo: {     
       width: 220,
