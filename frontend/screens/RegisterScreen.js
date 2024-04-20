@@ -5,7 +5,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import Logo from "../components/Logo";
 
 
-const RegisterScreen = () => {
+const RegisterScreen = ({navigation}) => {
 
   // the state for the form registry
   const [formData, setFormData] = useState({
@@ -28,7 +28,7 @@ const RegisterScreen = () => {
     }))
   }
 
-  //to handle submiting the form
+  //to handle submiting the form ****
   const OnPress = () => {
     //send form data to the api/db 
 
