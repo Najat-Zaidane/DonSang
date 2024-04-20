@@ -1,10 +1,19 @@
-import React  from "react";
+import  React, {useState}  from "react";
 import {View, StyleSheet,TextInput, TouchableOpacity} from 'react-native'
 import Text from '@kaloraat/react-native-text'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Logo from "../components/Logo";
 
-const Register = () => {
+
+const RegisterScreen = () => {
+  const [lname,setLname] = useState("")  //nom
+  const [fname,setFname]= useState("")  //prenom
+  const [email, setEmail] = useState("")
+  const [number,setNumber] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+
+
 
     return(
         <KeyboardAwareScrollView contentContainerStyle={styles.container}>
@@ -21,13 +30,16 @@ const Register = () => {
                 <TextInput
                 style = {styles.input}
                 placeholder="Nom"
-                //onChangeText={(text) => console.log(text)}
+                value={lname}
+                onChangeText={setLname}
                 />
 
                 {/* Prenom */}
                 <TextInput
                 style = {styles.input}
                 placeholder="Prénom"
+                value={fname}
+                onChangeText={setFname}
                 />
 
                 {/* email */}
@@ -35,12 +47,16 @@ const Register = () => {
                 style={styles.input}
                 placeholder="Email"
                 keyboardType="email-address"
+                value={email}
+                onChangeText={setEmail}
                 />
                 {/* number */}
                 <TextInput
                 style={styles.input}
                 placeholder="Numéro de téléphone"
                 keyboardType='numeric'
+                value={number}
+                onChangeText={setNumber}
                 />
 
                 {/*  Password */}
@@ -48,6 +64,8 @@ const Register = () => {
                 style={styles.input}
                 placeholder="Mot de passe"
                 secureTextEntry
+                value={password}
+                onChangeText={setPassword}
                 />
 
                 {/* Passsword confirmation */}
@@ -55,10 +73,14 @@ const Register = () => {
                 style={styles.input}
                 placeholder="Confirmation du mot de passe"
                 secureTextEntry
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
                 />
 
             <TouchableOpacity style={styles.signUpButton}>
-              <Text bold medium center style={styles.signUpButtonText}>S'inscrire</Text>
+              <Text bold medium center style={styles.signUpButtonText}>
+                S'inscrire
+              </Text>
             </TouchableOpacity>
 
             <Text center >
@@ -74,7 +96,7 @@ const Register = () => {
 
 }
 
-export default Register;
+export default RegisterScreen;
 
 const styles = StyleSheet.create({
     container: {

@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     container: {
       justifyContent: "center",
       alignItems: "center",
-      marginTop: 35,
+      marginTop: 0,
       marginBottom :-95,
     },
     logo: {     

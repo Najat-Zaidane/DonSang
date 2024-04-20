@@ -3,7 +3,7 @@ import {View, StyleSheet,TextInput, TouchableOpacity} from 'react-native'
 import Text from '@kaloraat/react-native-text'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import LogoCopy from "../components/LogoCopy";
-const Register = () => {
+const LoginScreen = () => {
 
     return(
         <KeyboardAwareScrollView contentContainerStyle={styles.container}>
@@ -46,7 +46,7 @@ const Register = () => {
 
 }
 
-export default Register;
+export default LoginScreen;
 
 const styles = StyleSheet.create({
     container: {
