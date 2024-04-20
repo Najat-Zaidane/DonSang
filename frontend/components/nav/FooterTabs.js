@@ -10,7 +10,7 @@ export  const Tab = ({text,name,route}) => {
     return (
     <TouchableOpacity style={styles.tab}  onPress={() => navigation.navigate(route)}  >
               <>
-                <FontAwesome5 name={name} size={25} style={styles.icon}  />
+                <FontAwesome5 name={name} size={23} style={styles.icon}  />
                 <Text  color="#003CA6">{text}</Text>
               </>
     </TouchableOpacity>
