@@ -6,13 +6,37 @@ import Logo from "../components/Logo";
 
 
 const RegisterScreen = () => {
-  const [lname,setLname] = useState("")  //nom
-  const [fname,setFname]= useState("")  //prenom
-  const [email, setEmail] = useState("")
-  const [number,setNumber] = useState("")
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
 
+  // the state for the form registry
+  const [formData, setFormData] = useState({
+    lname : '',
+    fname : '',
+    email: '',
+    number: '',
+    password: '',
+    password2: '', 
+  })
+
+  //distracture the fields from the state object 
+  const {lname,fname,email,number,password,password2}= formData
+
+  //to handle changes in the inputs
+  const onChangeText = (text,inputName) => { 
+    setFormData((prevState) => ({
+      ...prevState,
+      [inputName]  : text
+    }))
+  }
+
+  //to handle submiting the form
+  const OnPress = (e) => {
+    //send form data to the api 
+
+    //for now
+    console.log('Form submitted:', formData)
+  }
+
+  
 
 
     return(
@@ -29,55 +53,60 @@ const RegisterScreen = () => {
                 {/* Nom */}
                 <TextInput
                 style = {styles.input}
-                placeholder="Nom"
+                placeholder="Entez votre nom"
                 value={lname}
-                onChangeText={setLname}
+               onChangeText={(text) => onChangeText(text, 'lname')}
                 />
 
                 {/* Prenom */}
                 <TextInput
                 style = {styles.input}
-                placeholder="Prénom"
+                placeholder="Entez votre prénom"
                 value={fname}
-                onChangeText={setFname}
+                onChangeText={(text) => onChangeText(text, 'fname')}
+               
                 />
 
                 {/* email */}
                 <TextInput 
                 style={styles.input}
-                placeholder="Email"
+                placeholder="Entez votre e-mail"
                 keyboardType="email-address"
                 value={email}
-                onChangeText={setEmail}
+                onChangeText={(text) => onChangeText(text, 'email')}
+                
                 />
                 {/* number */}
                 <TextInput
                 style={styles.input}
-                placeholder="Numéro de téléphone"
+                placeholder="Entez votre numéro téléphonique"
                 keyboardType='numeric'
                 value={number}
-                onChangeText={setNumber}
+                onChangeText={(text) => onChangeText(text, 'number')}
+             
                 />
 
                 {/*  Password */}
                 <TextInput 
                 style={styles.input}
-                placeholder="Mot de passe"
+                placeholder="Entez votre mot de passe"
                 secureTextEntry
                 value={password}
-                onChangeText={setPassword}
+                onChangeText={(text) => onChangeText(text, 'password')}
+              
                 />
 
                 {/* Passsword confirmation */}
                 <TextInput
                 style={styles.input}
-                placeholder="Confirmation du mot de passe"
+                placeholder="Confirmez votre mot de passe"
                 secureTextEntry
-                value={confirmPassword}
-                onChangeText={setConfirmPassword}
+                value={password2}
+                onChangeText={(text) => onChangeText(text, 'password2')}
+             
                 />
 
-            <TouchableOpacity style={styles.signUpButton}>
+            <TouchableOpacity style={styles.signUpButton} onPress={OnPress}>
               <Text bold medium center style={styles.signUpButtonText}>
                 S'inscrire
               </Text>
