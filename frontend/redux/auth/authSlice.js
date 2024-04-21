@@ -4,6 +4,9 @@
 import { createSlice , createAsyncThunk } from '@reduxjs/toolkit'
 import authService from './authService'
 
+//when we register or login we get a back a token that we need to access the protected routes
+//so we gonna get that token and save it to our local storage
+
 // Get user from local Storage
 // the parse() is because the local storage can only have strings
 const user = JSON.parse(localStorage.getItem('User'))
@@ -22,6 +25,7 @@ const initialState = {
 //the user we gonna get from the register component
 export const register = createAsyncThunk('auth/register',async(user , thunkApi) => {
     try {
+        //returning the payload ( data) that are coming back from the register function of the service 
         return await authService.register(user);
     } catch (error) {
         const message = 
@@ -30,7 +34,7 @@ export const register = createAsyncThunk('auth/register',async(user , thunkApi) 
         error.response.data.message) || 
         error.message || 
         error.toString()
-        
+
         //to reject then send the error message as payload
         return thunkApi.rejectWithValue(message)
     }
@@ -49,7 +53,23 @@ export const authSlice = createSlice({
             state.message = ''
         }
     }, 
-    extraReducers : () => {}
+    extraReducers : (builder) => {
+        builder 
+          .addCase(register.pending, (state) => {
+            state.isLoading = true  //fetching the data
+          })
+          .addCase(register.fulfilled, (state, action)=> {
+            state.isLoading = false 
+            state.isSuccess = true
+            state.user = action.payload
+          })
+          .addCase(register.rejected, (state,action)=>{
+            state.isLoading = false 
+            state.isError = true // because we're in the rejection case wich means we have an error 
+            state.message = action.payload
+            state.user = null // beacause during the register smth went wrong 
+    })
+}
 })
 
 // exporting the actions that will be created : 
