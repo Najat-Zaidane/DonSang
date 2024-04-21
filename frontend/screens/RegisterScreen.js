@@ -3,6 +3,13 @@ import {View, StyleSheet,TextInput, TouchableOpacity} from 'react-native'
 import Text from '@kaloraat/react-native-text'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Logo from "../components/Logo";
+import { useNavigation } from "@react-navigation/native";
+
+
+// useSelector is used to select  the state of the store 
+// useDispatch is used to dispatch actions to the store.
+import {useSelector , useDispatch} from 'react-redux'
+import { register,reset } from "../redux/auth/authSlice";
 
 
 const RegisterScreen = ({navigation}) => {
@@ -20,6 +27,11 @@ const RegisterScreen = ({navigation}) => {
   //distracture the fields from the state object 
   const {lname,fname,email,number,password,password2}= formData
 
+  const navigate = useNavigation()
+  const dispatch = useDispatch()
+
+  const {user , isLoading , isError, isSuccess, message } = useSelector((state)=> state.auth)
+
   //to handle changes in the inputs
   const onChangeText = (text,inputName) => { 
     setFormData((prevState) => ({
@@ -28,12 +40,14 @@ const RegisterScreen = ({navigation}) => {
     }))
   }
 
-  //to handle submiting the form ****
+  //to handle submiting the form 
   const OnPress = () => {
-    //send form data to the api/db 
+    if(password !== password2 ){
+      
+    }
 
-    //for now
-    console.log('Form submitted:', formData)
+    
+    //console.log('Form submitted:', formData)
   }
 
     return(
