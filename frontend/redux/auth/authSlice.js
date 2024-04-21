@@ -1,18 +1,15 @@
 // in ths file is where our reducers or our initial state gonna go 
 // with redux tool kit, updating the state with what we get back from the server is gonna be easier
 //the createAsyncThunk is in order to have async functions to update the states
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createSlice , createAsyncThunk } from '@reduxjs/toolkit'
 import authService from './authService'
 
 //when we register or login we get a back a token that we need to access the protected routes
 //so we gonna get that token and save it to our local storage
 
-// Get user from local Storage
-// the parse() is because the local storage can only have strings
-const user = JSON.parse(localStorage.getItem('User'))
-
 const initialState = {
-    user: user ? user : null, // if there's a user in the local storage i'm gonna use it esle it's null
+    user: null, 
     isError : false,
     isSuccess: false,
     isLoading : false,
@@ -62,6 +59,8 @@ export const authSlice = createSlice({
             state.isLoading = false 
             state.isSuccess = true
             state.user = action.payload
+             // Save user data to AsyncStorage after successful registration
+             AsyncStorage.setItem('userData', JSON.stringify(action.payload))
           })
           .addCase(register.rejected, (state,action)=>{
             state.isLoading = false 

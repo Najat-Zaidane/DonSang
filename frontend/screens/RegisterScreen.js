@@ -41,12 +41,26 @@ const RegisterScreen = ({navigation}) => {
   }
 
   //to handle submiting the form 
-  const OnPress = () => {
+  const OnPress = async () => {
+    if(!lname || !fname ||!email || !number ||!password ||!password2 ){
+      alert("Veuillez Remplir tous les champs")
+      return;
+    } 
+
     if(password !== password2 ){
-      
+      alert("Les mots de passe entrés ne sont pas conformes, veuillez ressayer !")
+    } else {
+      const userData = {
+        lname,
+        fname,
+        email,
+        number,
+        password,
+      }
+
+      dispatch(register(userData)) //dispatching the action register
     }
 
-    
     //console.log('Form submitted:', formData)
   }
 
