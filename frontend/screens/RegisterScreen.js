@@ -36,7 +36,16 @@ const RegisterScreen = ({navigation}) => {
   )
 
   useEffect (() => {
-    if(isError)
+    if(isError) {
+      alert(message)
+    }
+
+    if(isSuccess || user){
+      navigation.navigate('Home') 
+    }
+
+    //after checking everything we gonna reset the state  to its default value : false
+    dispatch(reset())
 
   }, [user, isError, isSuccess, message, navigate, dispatch])
 
