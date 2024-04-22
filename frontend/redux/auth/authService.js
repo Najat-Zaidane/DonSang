@@ -5,10 +5,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from'axios'
 
 
-const API_URL = '/api/users/'
+const API_URL = 'http://192.168.56.1:5000/api/users/'
 
 //Register User 
 const register = async (userData) => {
+    try{
     //getting the response of the request from the server
     
     //POST request with its response in the variable response
@@ -21,8 +22,11 @@ const register = async (userData) => {
     }
 
     return response.data
-
-}
+}catch (error) {
+    console.error('Error registering user:', error);
+    throw error; // Re-throw the error to propagate it to the caller
+  }
+};
 
 const authService = {
     register,

@@ -3,7 +3,7 @@ import {View, StyleSheet,TextInput, TouchableOpacity} from 'react-native'
 import Text from '@kaloraat/react-native-text'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Logo from "../components/Logo";
-import { useNavigation } from "@react-navigation/native";
+//import { useNavigation } from "@react-navigation/native";
 import Spinner from "../components/Spinner"
 
 
@@ -28,7 +28,7 @@ const RegisterScreen = ({navigation}) => {
   //distracture the fields from the state object 
   const {lname,fname,email,number,password,password2}= formData
 
-  const navigate = useNavigation()
+  //const navigate = useNavigation()
   const dispatch = useDispatch()
 
   const {user , isLoading , isError, isSuccess, message } = useSelector
@@ -39,6 +39,7 @@ const RegisterScreen = ({navigation}) => {
   useEffect (() => {
     if(isError) {
       alert(message)
+      console.log(message)
     }
 
     if(isSuccess || user){
@@ -48,7 +49,7 @@ const RegisterScreen = ({navigation}) => {
     //after checking everything we gonna reset the state  to its default value : false
     dispatch(reset())
 
-  }, [user, isError, isSuccess, message, navigate, dispatch])
+  }, [user, isError, isSuccess, message, navigation.navigate, dispatch])
 
   //to handle changes in the inputs
   const onChangeText = (text,inputName) => { 
