@@ -10,10 +10,10 @@ const LoginScreen = ({navigation}) => {
 
   const [formData,setFormData] = useState({
     email : '',
-    password : '',
+    pwd : '',
   })
 
-  const {email, password} = formData 
+  const {email, pwd} = formData 
   
 //to handle the inputs change
 const onChangeText = (text , inputName) =>{
@@ -51,13 +51,13 @@ const OnPress = () => {
                 onChangeText={(text) => onChangeText(text,'email')}
                 />
 
-                {/*  Password */}
+                {/*  pwd */}
                 <TextInput 
                 style={styles.input}
                 placeholder="Mot de passe"
                 secureTextEntry
-                value={password}
-                onChangeText={(text) => onChangeText(text, 'password')}
+                value={pwd}
+                onChangeText={(text) => onChangeText(text, 'pwd')}
                 />
 
             <TouchableOpacity style={styles.signUpButton}>

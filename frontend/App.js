@@ -8,6 +8,7 @@ import LoginScreen from "./screens/LoginScreen"
 import HomeScreen from './screens/HomeScreen';
 import { store } from './redux/store';
 
+
 //The provider actually is to make the store so the global states available to any nested components that need acces to it 
 
 
@@ -18,9 +19,9 @@ export default function App() {
     <Provider store={store}>
     <NavigationContainer  initialRouteName='Home'> 
       <Stack.Navigator>
-       <Stack.Screen name="Register" component={RegisterScreen} options ={{headerShown: false, headerLeft:null}}/>
-        <Stack.Screen name="Login" component={LoginScreen} options ={{headerShown: false, headerLeft:null}}/>
-        <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false, headerLeft: null}}/>
+      <Stack.Screen name="Login" component={LoginScreen} options ={{headerShown: false, headerLeft:null}}/>
+      <Stack.Screen name="Register" component={RegisterScreen} options ={{headerShown: false, headerLeft:null}}/>
+      <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false, headerLeft: null}}/>
       </Stack.Navigator>
     </NavigationContainer>
     </Provider>

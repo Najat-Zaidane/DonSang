@@ -19,6 +19,7 @@ const RegisterScreen = ({navigation}) => {
   const [formData, setFormData] = useState({
     nom : '',
     prenom : '',
+    role:'',
     email: '',
     tele: '',
     pwd: '',
@@ -26,7 +27,7 @@ const RegisterScreen = ({navigation}) => {
   })
 
   //distracture the fields from the state object 
-  const {nom,prenom,email,tele,pwd,pwd2}= formData
+  const {nom,prenom,role,email,tele,pwd,pwd2}= formData
 
   //const navigate = useNavigation()
   const dispatch = useDispatch()
@@ -61,7 +62,7 @@ const RegisterScreen = ({navigation}) => {
 
   //to handle submiting the form 
   const OnPress = async () => {
-    if(!nom || !prenom ||!email || !tele ||!pwd ||!pwd2 ){
+    if(!nom || !prenom ||!role  ||!email ||  !tele ||!pwd ||!pwd2 ){
       alert("Veuillez Remplir tous les champs")
       return;
     } 
@@ -72,6 +73,7 @@ const RegisterScreen = ({navigation}) => {
       const userData = {
         nom,
         prenom,
+        role,
         email,
         tele,
         pwd,
@@ -113,6 +115,15 @@ const RegisterScreen = ({navigation}) => {
                 placeholder="Entez votre prénom"
                 value={prenom}
                 onChangeText={(text) => onChangeText(text, 'prenom')}
+               
+                />
+
+                {/* role */}
+                <TextInput
+                style = {styles.input}
+                placeholder="Entez votre role (Donator, Admin) "
+                value={role}
+                onChangeText={(text) => onChangeText(text, 'role')}
                
                 />
 

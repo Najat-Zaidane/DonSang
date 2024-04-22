@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from'axios'
 
 
-const API_URL = '/api/users/'
+const API_URL = 'http://192.168.1.101:5000/api/users/'
 
 //Register User 
 const register = async (userData) => {
