@@ -52,6 +52,7 @@ const registerUser = asyncHandler( async (req,res) => {
 
         }catch (error) {
           res.status(500).json({message : 'Failed to create the user !'})
+          console.log(error)
     }
 })
 

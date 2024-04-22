@@ -17,16 +17,16 @@ const RegisterScreen = ({navigation}) => {
 
   // the state for the form registry
   const [formData, setFormData] = useState({
-    lname : '',
-    fname : '',
+    nom : '',
+    prenom : '',
     email: '',
-    number: '',
-    password: '',
-    password2: '', 
+    tele: '',
+    pwd: '',
+    pwd2: '', 
   })
 
   //distracture the fields from the state object 
-  const {lname,fname,email,number,password,password2}= formData
+  const {nom,prenom,email,tele,pwd,pwd2}= formData
 
   //const navigate = useNavigation()
   const dispatch = useDispatch()
@@ -61,23 +61,24 @@ const RegisterScreen = ({navigation}) => {
 
   //to handle submiting the form 
   const OnPress = async () => {
-    if(!lname || !fname ||!email || !number ||!password ||!password2 ){
+    if(!nom || !prenom ||!email || !tele ||!pwd ||!pwd2 ){
       alert("Veuillez Remplir tous les champs")
       return;
     } 
 
-    if(password !== password2 ){
+    if(pwd !== pwd2 ){
       alert("Les mots de passe entrés ne sont pas conformes, veuillez ressayer !")
     } else {
       const userData = {
-        lname,
-        fname,
+        nom,
+        prenom,
         email,
-        number,
-        password,
+        tele,
+        pwd,
       }
+     console.log(userData)
 
-      dispatch(register(userData)) //dispatching the action register
+    dispatch(register(userData)) //dispatching the action register
     }
 
     //console.log('Form submitted:', formData)
@@ -102,16 +103,16 @@ const RegisterScreen = ({navigation}) => {
                 <TextInput
                 style = {styles.input}
                 placeholder="Entez votre nom"
-                value={lname}
-               onChangeText={(text) => onChangeText(text, 'lname')}
+                value={nom}
+               onChangeText={(text) => onChangeText(text, 'nom')}
                 />
 
                 {/* Prenom */}
                 <TextInput
                 style = {styles.input}
                 placeholder="Entez votre prénom"
-                value={fname}
-                onChangeText={(text) => onChangeText(text, 'fname')}
+                value={prenom}
+                onChangeText={(text) => onChangeText(text, 'prenom')}
                
                 />
 
@@ -124,23 +125,23 @@ const RegisterScreen = ({navigation}) => {
                 onChangeText={(text) => onChangeText(text, 'email')}
                 
                 />
-                {/* number */}
+                {/* tele */}
                 <TextInput
                 style={styles.input}
                 placeholder="Entez votre numéro téléphonique"
                 keyboardType='numeric'
-                value={number}
-                onChangeText={(text) => onChangeText(text, 'number')}
+                value={tele}
+                onChangeText={(text) => onChangeText(text, 'tele')}
              
                 />
 
-                {/*  Password */}
+                {/*  pwd */}
                 <TextInput 
                 style={styles.input}
                 placeholder="Entez votre mot de passe"
                 secureTextEntry
-                value={password}
-                onChangeText={(text) => onChangeText(text, 'password')}
+                value={pwd}
+                onChangeText={(text) => onChangeText(text, 'pwd')}
               
                 />
 
@@ -149,8 +150,8 @@ const RegisterScreen = ({navigation}) => {
                 style={styles.input}
                 placeholder="Confirmez votre mot de passe"
                 secureTextEntry
-                value={password2}
-                onChangeText={(text) => onChangeText(text, 'password2')}
+                value={pwd2}
+                onChangeText={(text) => onChangeText(text, 'pwd2')}
              
                 />
 

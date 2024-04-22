@@ -9,14 +9,9 @@ const port = process.env.port  || 5000
 
 const app = express()
 
- //cors 
-var corsOptions = {
-     origin : 'http://localhost:5000'
- }
 
 
 //adding  middleware for handling data parsing in the tester postman
-app.use(cors(corsOptions))
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))

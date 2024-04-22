@@ -5,15 +5,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from'axios'
 
 
-const API_URL = 'http://192.168.56.1:5000/api/users/'
+const API_URL = '/api/users/'
 
 //Register User 
 const register = async (userData) => {
     try{
+
     //getting the response of the request from the server
     
     //POST request with its response in the variable response
-    const response = await axios.post(API_URL, userData)
+     const response = await axios.post(API_URL, userData)
 
     
     //axios put the data inside of an object called data 
@@ -23,7 +24,7 @@ const register = async (userData) => {
 
     return response.data
 }catch (error) {
-    console.error('Error registering user:', error);
+    console.error( error);
     throw error; // Re-throw the error to propagate it to the caller
   }
 };
