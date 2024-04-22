@@ -1,4 +1,4 @@
-import  React, {useState}  from "react";
+import  React, {useEffect, useState}  from "react";
 import {View, StyleSheet,TextInput, TouchableOpacity} from 'react-native'
 import Text from '@kaloraat/react-native-text'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -30,7 +30,15 @@ const RegisterScreen = ({navigation}) => {
   const navigate = useNavigation()
   const dispatch = useDispatch()
 
-  const {user , isLoading , isError, isSuccess, message } = useSelector((state)=> state.auth)
+  const {user , isLoading , isError, isSuccess, message } = useSelector
+  (
+    (state)=> state.auth
+  )
+
+  useEffect (() => {
+    if(isError)
+
+  }, [user, isError, isSuccess, message, navigate, dispatch])
 
   //to handle changes in the inputs
   const onChangeText = (text,inputName) => { 
