@@ -4,6 +4,7 @@ import Text from '@kaloraat/react-native-text'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Logo from "../components/Logo";
 import { useNavigation } from "@react-navigation/native";
+import Spinner from "../components/Spinner"
 
 
 // useSelector is used to select  the state of the store 
@@ -79,6 +80,10 @@ const RegisterScreen = ({navigation}) => {
     }
 
     //console.log('Form submitted:', formData)
+  }
+
+  if(isLoading) {
+     return <Spinner/>
   }
 
     return(
