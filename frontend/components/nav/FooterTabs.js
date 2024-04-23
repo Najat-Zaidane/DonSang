@@ -10,8 +10,8 @@ export  const Tab = ({text,name,route}) => {
     return (
     <TouchableOpacity style={styles.tab}  onPress={() => navigation.navigate(route)}  >
               <>
-                <FontAwesome5 name={name} size={23} style={styles.icon}  />
-                <Text  color="#003CA6">{text}</Text>
+                <FontAwesome5 name={name} size={22} style={styles.icon}  />
+                <Text  color="#1D828E">{text}</Text>
               </>
     </TouchableOpacity>
     );
@@ -62,7 +62,7 @@ const styles=StyleSheet.create ({
     icon : {
        marginBottom : 3,
        alignSelf : "center",
-       color : "#003CA6",
+       color : "#1D828E",
     },
     tab: {
       alignItems: "center",

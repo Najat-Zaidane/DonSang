@@ -58,6 +58,17 @@ export const login = createAsyncThunk('auth/login',async(user , thunkApi) => {
     }
 })
 
+// //fetch the user data
+// export const getUserData = createAsyncThunk('auth/getUserData', async() => {
+//     try  {
+//         return await authService.getUserData()
+
+//     } catch(error){
+//         console.log("Error in getting User Data")
+//     }
+// }) 
+
+
 // Logout =  destorying the token
 export const logout = createAsyncThunk('auth/logout', async () => {
     await authService.logout()
@@ -65,6 +76,7 @@ export const logout = createAsyncThunk('auth/logout', async () => {
 
 
 
+//le slice d'authentification est créé, et on utilise le dispatch pour envoyer une action à notre reducer
 
 export const authSlice = createSlice({
     name:'auth',
@@ -112,6 +124,16 @@ export const authSlice = createSlice({
             state.message = action.payload
             state.user = null // beacause during the register smth went wrong 
         })
+        // .addCase(getUserData.pending, (state) => {
+        //     state.isLoading = true; // Commence à charger les données utilisateur
+        // })
+        //   .addCase(getUserData.fulfilled, (state, action)=> {
+        //     state.isLoading = false 
+        //     state.isSuccess = true
+        //     state.user = action.payload
+        //      // Save user data to AsyncStorage after successful registration
+        //      AsyncStorage.setItem('userData', JSON.stringify(action.payload))
+        //   })         
         .addCase(logout.fulfilled, (state)=>{
             state.user = null
 

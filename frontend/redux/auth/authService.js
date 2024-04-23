@@ -46,6 +46,26 @@ const login = async (userData) => {
   }
 };
 
+// //fetch user Data
+// const  getUserData = async ({navigation})=>{
+//     try{
+//    const token = await  AsyncStorage.getItem('token')
+
+//    if(!token){
+//        alert("You must be logged in")
+//        navigation.navigate('Register')
+//    }else{
+//         const response = await axios.get(API_URL +'me',{headers:{Authorization:`Bearer ${token}`}})
+        
+//         return response.data
+//    }
+// } catch (error) {
+//     console.log(error)
+// }
+// }
+
+
+
 //Logout user
 const logout = () => {
     AsyncStorage.removeItem('user' )
@@ -54,6 +74,7 @@ const logout = () => {
 const authService = {
     register,
     login,
+   // getUserData,
     logout,
 }
 

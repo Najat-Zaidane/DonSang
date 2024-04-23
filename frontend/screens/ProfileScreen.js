@@ -59,7 +59,7 @@ const styles=StyleSheet.create ({
         width: 170,
         borderRadius: 85,
         borderWidth: 2,
-        borderColor: "#31D194",
+        borderColor: "#7CC1A6",
         marginBottom : 15
     },
     text : {

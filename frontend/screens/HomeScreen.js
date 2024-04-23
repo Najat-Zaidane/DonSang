@@ -1,12 +1,13 @@
 import React from "react";
 import {SafeAreaView, Text,StyleSheet} from 'react-native'
 import FooterTabs from "../components/nav/FooterTabs";
+import HomeContent from "../components/HomeContent";
 
 
 const HomeScreen = () =>{
     return (
         <SafeAreaView style={styles.container}>
-            <Text>home content</Text>
+           <HomeContent/>
             <FooterTabs/>
         </SafeAreaView>
     )

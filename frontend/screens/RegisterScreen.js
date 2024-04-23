@@ -31,6 +31,8 @@ const RegisterScreen = ({navigation}) => {
 
   const dispatch = useDispatch()
 
+  //useSelector  give us the access to the Redux Store's state
+  //here we're accessing the slice 'auth' of the store, this slice contains information related to the users registry and login (authentication)
   const {user , isLoading , isError, isSuccess, message } = useSelector
   (
     (state)=> state.auth
