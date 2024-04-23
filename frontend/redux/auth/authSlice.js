@@ -37,6 +37,27 @@ export const register = createAsyncThunk('auth/register',async(user , thunkApi) 
     }
 })
 
+//Login user
+
+export const login = createAsyncThunk('auth/login',async(user , thunkApi) => {
+    try {
+      
+        return await authService.login(user);
+
+    } catch (error) {
+
+    const message = 
+        (error.response && 
+        error.response.data && 
+        error.response.data.message) || 
+        error.message || 
+        error.toString()
+
+        //to reject then send the error message as payload
+        return thunkApi.rejectWithValue(message)
+    }
+})
+
 // Logout =  destorying the token
 export const logout = createAsyncThunk('auth/logout', async () => {
     await authService.logout()
