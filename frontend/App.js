@@ -20,11 +20,11 @@ const Stack = createNativeStackNavigator(); //Fonction qui renvoie la prop scree
 export default function App() {
   return (
     <Provider store={store}>
-    <NavigationContainer  initialRouteName='Login'> 
+    <NavigationContainer  initialRouteName='Home'> 
       <Stack.Navigator>
+      <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false, headerLeft: null}}/> 
       <Stack.Screen name="Login" component={LoginScreen} options ={{headerShown: false, headerLeft:null}}/>
       <Stack.Screen name="Profile" component={ProfileScreen} options={{headerShown: false, headerLeft: null}}/>
-      <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false, headerLeft: null}}/>    
       <Stack.Screen name="Register" component={RegisterScreen} options ={{headerShown: false, headerLeft:null}}/> 
       <Stack.Screen name="Rdv" component={RdvScreen} options ={{headerShown: false, headerLeft:null}}/> 
       <Stack.Screen name="Centers" component={CentersScreen} options ={{headerShown: false, headerLeft:null}}/> 
