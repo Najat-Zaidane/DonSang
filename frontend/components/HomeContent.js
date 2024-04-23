@@ -27,13 +27,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
     // };
 
 const HomeContent = () => {
+    const user = useSelector(state => state.auth.user);
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
 
         <View style={styles.welcomeContainer}>
         <Text style={styles.welcomeText}>
-                Bienvenue sur notre application  !
+                Bienvenue sur notre application {user?.nom} !
         </Text>
         </View>
     

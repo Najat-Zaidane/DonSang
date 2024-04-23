@@ -39,15 +39,12 @@ const registerUser = asyncHandler( async (req,res) => {
          //if the user then displaying the user with the generated token 
         if(user) {
          res.status(201).json({
-            message : 'user created successfuly ',
-            data : {
                 id : user.id ,
                 nom : user.nom,
                 email : user.email, 
                 tele: user.tele,
                 role : user.role,
                 token: generateToken(user.id),
-            }
         }) }
 
         }catch (error) {
@@ -72,16 +69,13 @@ const loginUser = asyncHandler( async (req,res) => {
         const validPwd = await bcrypt.compare(pwd, user.pwd) 
         //const to pass to the generate
         if(user && validPwd ){
-            res.status(200).json({
-                message: 'user logged in successfuly',
-                data : {
+            res.json({
                     id: user.id,
                     nom: user.nom,
                     prenom:user.prenom,
                     email : user.email,
                     isActive : user.isActive,
                     token : generateToken(user.id),
-                }
              })
             }
         else {

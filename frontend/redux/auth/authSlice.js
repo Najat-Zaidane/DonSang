@@ -98,7 +98,7 @@ export const authSlice = createSlice({
             state.isSuccess = true
             state.user = action.payload
              // Save user data to AsyncStorage after successful registration
-             //AsyncStorage.setItem('userData', JSON.stringify(action.payload))
+            AsyncStorage.setItem('userData', JSON.stringify(action.payload))
           })
           .addCase(register.rejected, (state,action)=>{
             state.isLoading = false 
@@ -113,8 +113,8 @@ export const authSlice = createSlice({
             state.isLoading = false 
             state.isSuccess = true
             state.user = action.payload
-             // Save user data to AsyncStorage after successful registration
-             //AsyncStorage.setItem('userData', JSON.stringify(action.payload))
+            // Save user data to AsyncStorage after successful registration
+            AsyncStorage.setItem('userData', JSON.stringify(action.payload))
           })
           .addCase(login.rejected, (state,action)=>{
             state.isLoading = false 
