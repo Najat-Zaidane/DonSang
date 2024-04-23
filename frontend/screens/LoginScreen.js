@@ -1,9 +1,11 @@
-import React, { useState }  from "react";
+import React, {useEffect, useState }  from "react";
 import {View, StyleSheet,TextInput, TouchableOpacity} from 'react-native'
 import Text from '@kaloraat/react-native-text'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import LogoCopy from "../components/LogoCopy";
-
+import {useSelector , useDispatch} from 'react-redux'
+import { login,reset } from "../redux/auth/authSlice";
+import Spinner from "../components/Spinner"
 
 
 const LoginScreen = ({navigation}) => {
@@ -14,7 +16,29 @@ const LoginScreen = ({navigation}) => {
   })
 
   const {email, pwd} = formData 
-  
+
+  const dispatch = useDispatch()
+
+  const {user , isLoading , isError, isSuccess, message } = useSelector
+  (
+    (state)=> state.auth
+  )
+
+  useEffect (() => {
+    if(isError) {
+      alert(message)
+      console.log(message)
+    }
+
+    if(isSuccess || user){
+      navigation.navigate('Home') 
+    }
+
+    //after checking everything we gonna reset the state  to its default value : false
+    dispatch(reset())
+
+  }, [user, isError, isSuccess, message, navigation.navigate, dispatch])
+
 //to handle the inputs change
 const onChangeText = (text , inputName) =>{
   setFormData((prevState) => ({
@@ -23,12 +47,26 @@ const onChangeText = (text , inputName) =>{
   }))
 }
 
-//to handle submiting the form ****
-const OnPress = () => {
-  //send form data to the api/db 
+//to handle submiting the form 
+const OnPress = async () => {
 
-  //for now
-  console.log('Form submitted:', formData)
+  if(!email || !pwd){
+    alert("Veuillez Remplir tous les champs")
+    return;
+  } 
+  //the user is validated iin the backend
+    const userData = {  
+      email,
+      pwd
+    }
+
+ //  console.log(userData)
+
+  dispatch(login(userData)) 
+  }
+
+if(isLoading) {
+  return <Spinner/>
 }
 
     return(

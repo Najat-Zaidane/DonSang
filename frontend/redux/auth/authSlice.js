@@ -96,6 +96,22 @@ export const authSlice = createSlice({
             state.message = action.payload
             state.user = null // beacause during the register smth went wrong 
         })
+        .addCase(login.pending, (state) => {
+            state.isLoading = true  //fetching the data
+          })
+          .addCase(login.fulfilled, (state, action)=> {
+            state.isLoading = false 
+            state.isSuccess = true
+            state.user = action.payload
+             // Save user data to AsyncStorage after successful registration
+             AsyncStorage.setItem('userData', JSON.stringify(action.payload))
+          })
+          .addCase(login.rejected, (state,action)=>{
+            state.isLoading = false 
+            state.isError = true // because we're in the rejection case wich means we have an error 
+            state.message = action.payload
+            state.user = null // beacause during the register smth went wrong 
+        })
         .addCase(logout.fulfilled, (state)=>{
             state.user = null
 

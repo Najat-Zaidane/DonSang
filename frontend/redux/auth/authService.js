@@ -29,6 +29,23 @@ const register = async (userData) => {
   }
 };
 
+
+//login User 
+const login = async (userData) => {
+    try{
+     const response = await axios.post(API_URL +'login', userData)
+
+    if(response.data) {
+        await AsyncStorage.setItem('user', JSON.stringify(response.data)) // the response.data will include the token
+    }
+
+    return response.data
+}catch (error) {
+    console.error( error);
+    throw error; // Re-throw the error to propagate it to the caller
+  }
+};
+
 //Logout user
 const logout = () => {
     AsyncStorage.removeItem('user' )
@@ -36,6 +53,7 @@ const logout = () => {
 
 const authService = {
     register,
+    login,
     logout,
 }
 
