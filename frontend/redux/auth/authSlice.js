@@ -74,7 +74,12 @@ export const authSlice = createSlice({
             state.isError = true // because we're in the rejection case wich means we have an error 
             state.message = action.payload
             state.user = null // beacause during the register smth went wrong 
-    })
+        })
+        .addCase(logout.fulfilled, (state)=>{
+            state.user = null
+
+        })
+
 }
 })
 

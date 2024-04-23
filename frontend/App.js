@@ -6,6 +6,9 @@ import { Provider } from 'react-redux';
 import RegisterScreen from "./screens/RegisterScreen";
 import LoginScreen from "./screens/LoginScreen"
 import HomeScreen from './screens/HomeScreen';
+import ProfileScreen from './screens/ProfileScreen'
+import RdvScreen from './screens/RdvScreen'
+import CentersScreen from './screens/CentersScreen'
 import { store } from './redux/store';
 
 
@@ -19,9 +22,12 @@ export default function App() {
     <Provider store={store}>
     <NavigationContainer  initialRouteName='Home'> 
       <Stack.Navigator>
-      <Stack.Screen name="Login" component={LoginScreen} options ={{headerShown: false, headerLeft:null}}/>
-      <Stack.Screen name="Register" component={RegisterScreen} options ={{headerShown: false, headerLeft:null}}/>
+      <Stack.Screen name="Profile" component={ProfileScreen} options={{headerShown: false, headerLeft: null}}/>
       <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false, headerLeft: null}}/>
+      <Stack.Screen name="Login" component={LoginScreen} options ={{headerShown: false, headerLeft:null}}/>
+      <Stack.Screen name="Register" component={RegisterScreen} options ={{headerShown: false, headerLeft:null}}/> 
+      <Stack.Screen name="Rdv" component={RdvScreen} options ={{headerShown: false, headerLeft:null}}/> 
+      <Stack.Screen name="Centers" component={CentersScreen} options ={{headerShown: false, headerLeft:null}}/> 
       </Stack.Navigator>
     </NavigationContainer>
     </Provider>

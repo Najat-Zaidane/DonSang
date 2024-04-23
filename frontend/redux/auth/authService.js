@@ -29,8 +29,14 @@ const register = async (userData) => {
   }
 };
 
+//Logout user
+const logout = () => {
+    AsyncStorage.removeItem('user' )
+}
+
 const authService = {
     register,
+    logout,
 }
 
 export default authService;

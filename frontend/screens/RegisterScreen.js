@@ -29,7 +29,6 @@ const RegisterScreen = ({navigation}) => {
   //distracture the fields from the state object 
   const {nom,prenom,role,email,tele,pwd,pwd2}= formData
 
-  //const navigate = useNavigation()
   const dispatch = useDispatch()
 
   const {user , isLoading , isError, isSuccess, message } = useSelector

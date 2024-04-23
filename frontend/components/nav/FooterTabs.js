@@ -19,7 +19,6 @@ export  const Tab = ({text,name,route}) => {
 
  
 
-
 const FooterTabs = () => {
     return(
         <View style={styles.container}>
