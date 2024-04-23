@@ -5,10 +5,25 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import LogoCopy from "../components/LogoCopy";
 import {useSelector , useDispatch} from 'react-redux'
 import { login,reset } from "../redux/auth/authSlice";
-import Spinner from "../components/Spinner"
-
+import Spinner from "../components/Spinner" 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = ({navigation}) => {
+
+  useEffect(() => {
+    const userInLocal = async () => {
+      console.log('function start');
+      const userLocal = await AsyncStorage.getItem('user');
+      if (userLocal) {
+        console.log('user exists');
+        dispatch(login());
+        navigation.navigate('Home');
+      } 
+    };
+
+    userInLocal();
+  }, []); // Empty dependency array ensures this effect runs only once
+  
 
   const [formData,setFormData] = useState({
     email : '',
@@ -62,7 +77,7 @@ const OnPress = async () => {
 
  //  console.log(userData)
 
-  dispatch(login(userData)) 
+ dispatch(login(userData)) 
   }
 
 if(isLoading) {

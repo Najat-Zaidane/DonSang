@@ -27,7 +27,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
     // };
 
 const HomeContent = () => {
+
     const user = useSelector(state => state.auth.user);
+    console.log('userinHomeContent', user)
 
     return (
         <ScrollView contentContainerStyle={styles.container}>

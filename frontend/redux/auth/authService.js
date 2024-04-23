@@ -40,6 +40,8 @@ const login = async (userData) => {
     if(response.data) {
         await AsyncStorage.setItem('user', JSON.stringify(response.data)) // the response.data will include the token
     }
+    console.log('inservice',response.data)
+    return response.data
    
  
 }catch (error) {
