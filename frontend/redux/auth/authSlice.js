@@ -5,8 +5,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createSlice , createAsyncThunk } from '@reduxjs/toolkit'
 import authService from './authService'
 
-//when we register or login we get a back a token that we need to access the protected routes
-//so we gonna get that token and save it to our local storage
 
 const initialState = {
     user: null, 
@@ -100,7 +98,7 @@ export const authSlice = createSlice({
             state.isSuccess = true
             state.user = action.payload
              // Save user data to AsyncStorage after successful registration
-             AsyncStorage.setItem('userData', JSON.stringify(action.payload))
+             //AsyncStorage.setItem('userData', JSON.stringify(action.payload))
           })
           .addCase(register.rejected, (state,action)=>{
             state.isLoading = false 
@@ -116,24 +114,14 @@ export const authSlice = createSlice({
             state.isSuccess = true
             state.user = action.payload
              // Save user data to AsyncStorage after successful registration
-             AsyncStorage.setItem('userData', JSON.stringify(action.payload))
+             //AsyncStorage.setItem('userData', JSON.stringify(action.payload))
           })
           .addCase(login.rejected, (state,action)=>{
             state.isLoading = false 
             state.isError = true // because we're in the rejection case wich means we have an error 
             state.message = action.payload
             state.user = null // beacause during the register smth went wrong 
-        })
-        // .addCase(getUserData.pending, (state) => {
-        //     state.isLoading = true; // Commence à charger les données utilisateur
-        // })
-        //   .addCase(getUserData.fulfilled, (state, action)=> {
-        //     state.isLoading = false 
-        //     state.isSuccess = true
-        //     state.user = action.payload
-        //      // Save user data to AsyncStorage after successful registration
-        //      AsyncStorage.setItem('userData', JSON.stringify(action.payload))
-        //   })         
+        })      
         .addCase(logout.fulfilled, (state)=>{
             state.user = null
 
@@ -142,7 +130,10 @@ export const authSlice = createSlice({
 }
 })
 
-// exporting the actions that will be created : 
-//exporting the reset action so we can use it in other components
-export const { reset} = authSlice.actions
+
+
+// exporting the actions so we can use it in other components
+export const { reset } = authSlice.actions
+
+// Exporting the reducer
 export default  authSlice.reducer;

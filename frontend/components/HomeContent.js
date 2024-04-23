@@ -1,14 +1,14 @@
-    //this component is used to create the home screen content  for the app
-    //it displays a list of items that can be clicked on and navigates to different pages based on what was clicked
+//this component is used to create the home screen content  for the app
+//it displays a list of items that can be clicked on and navigates to different pages based on what was clicked
 
-    import React from "react";
-    import { View, TouchableOpacity, StyleSheet, SafeAreaView ,ImageBackground, ScrollView,Text } from "react-native";
+import React, { useEffect , useState} from "react";
+import { View, TouchableOpacity, StyleSheet, SafeAreaView ,ImageBackground, ScrollView,Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import {useSelector} from "react-redux"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-    import { useNavigation } from "@react-navigation/native";
-    import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import WelcomeMessage from "./WelcomeMessage";
 
-    //this component  displays a single item on the home page
+//this component  displays a single item on the home page
     // export const Section = ({sectionNameRoute,sectionName,source}) =>{
     //     const navigation = useNavigation();
     // return (
@@ -26,13 +26,15 @@ import WelcomeMessage from "./WelcomeMessage";
     // );
     // };
 
-    const HomeContent = () => {
+const HomeContent = () => {
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
 
         <View style={styles.welcomeContainer}>
-            <WelcomeMessage/>
+        <Text style={styles.welcomeText}>
+                Bienvenue sur notre application  !
+        </Text>
         </View>
     
         {/* Conteneur pour les sections cliquables */}
@@ -61,14 +63,17 @@ import WelcomeMessage from "./WelcomeMessage";
     welcomeContainer: {
         alignItems: 'center',
         marginBottom: 10,
+        justifyContent: "center",
+        padding: 20,
     },
-    // welcomeText: {
-    //     fontSize: 18,
-    //     fontWeight: 'bold',
-    //     marginBottom: 10,
-    //     textTransform: 'uppercase',
-    //     color : "#1D828E",
-    // },
+    welcomeText: {
+        fontSize: 16,
+        fontWeight: "bold",
+        textAlign: "center",
+        color:"#CE1A19",
+        marginBottom: 10,
+        textTransform: 'uppercase',
+    },
     // introText: {
     //     fontSize: 16,
     //     textAlign: 'center',

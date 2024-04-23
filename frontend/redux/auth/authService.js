@@ -7,6 +7,8 @@ import axios from'axios'
 
 const API_URL = 'http://192.168.1.101:5000/api/users/'
 
+
+
 //Register User 
 const register = async (userData) => {
     try{
@@ -33,13 +35,13 @@ const register = async (userData) => {
 //login User 
 const login = async (userData) => {
     try{
-     const response = await axios.post(API_URL +'login', userData)
+     const response = await axios.post(API_URL + 'login', userData)
 
     if(response.data) {
         await AsyncStorage.setItem('user', JSON.stringify(response.data)) // the response.data will include the token
     }
-
-    return response.data
+   
+ 
 }catch (error) {
     console.error( error);
     throw error; // Re-throw the error to propagate it to the caller

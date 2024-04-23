@@ -71,7 +71,7 @@ const  updateRDV = asyncHandler(async (req , res )=> {
         if(rdvInitial) {
         const {date, status,creneauId, centerId} = req.body;
         //a user 1 should not be able to update a user 2 rdv  ******
-        const user = await User.findByPk(req.user.id)
+       const user = await User.findByPk(req.user.id)
         //make sure the logged in user matches the user who created the rdv
         if(user.id  !== rdvInitial.userId ){
             return res.status(401).json({ message: 'You are not authorized , you are not the user  who created this rdv' });
