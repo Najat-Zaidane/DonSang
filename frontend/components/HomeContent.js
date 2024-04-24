@@ -6,25 +6,26 @@ import { View, TouchableOpacity, StyleSheet, SafeAreaView ,ImageBackground, Scro
 import { useNavigation } from "@react-navigation/native";
 import {useSelector} from "react-redux"
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 
 //this component  displays a single item on the home page
-    // export const Section = ({sectionNameRoute,sectionName,source}) =>{
-    //     const navigation = useNavigation();
-    // return (
-    //     <TouchableOpacity onPress={() => navigation.navigate(sectionNameRoute)}>
-    //         <ImageBackground
-    //         source={source}
-    //         style={styles.sectionButton}
-    //         resizeMode="cover" 
-    //         blurRadius={10}
-    //         >
-    //         <Text style={styles.sectionButtonText}>{sectionName}</Text>
-    //         <FontAwesome5 name="chevron-right" size={25} style={styles.icon}/>
-    //         </ImageBackground>
-    //         </TouchableOpacity>
-    // );
-    // };
+    export const Section = ({sectionNameRoute,sectionName,source}) =>{
+        const navigation = useNavigation();
+    return (
+        <TouchableOpacity onPress={() => navigation.navigate(sectionNameRoute)}>
+            <ImageBackground
+            source={source}
+            style={styles.sectionButton}
+            resizeMode="cover" 
+            blurRadius={6}
+            >
+            <Text style={styles.sectionButtonText}>{sectionName}</Text>
+            <FontAwesome5 name="chevron-right" size={25} style={styles.icon}/>
+            </ImageBackground>
+            </TouchableOpacity>
+    );
+    };
 
 const HomeContent = () => {
   
@@ -50,18 +51,22 @@ const HomeContent = () => {
                 Bienvenue, sur EasyDonate !
         </Text>
         <Text style={styles.introText}>
-        Votre plateforme de don de sang simplifiée
-        Donnez du sang, sauvez des vies !
+        Votre plateforme de prise de rendez-vous pour les dons de sang simplifiée.  
         </Text>
+
+        <Text style={styles.introText2}>
+        Planifiez vos rendez-vous pour donner du sang et sauver des vies !
+        </Text>
+
         </View>
     
         {/* Conteneur pour les sections cliquables */}
-        {/* <View style={styles.sectionContainer}>
-        <Section  sectionNameRoute='Apropos' sectionName='A Propos' source={require('../assets/fac1.jpeg')} />
-        <Section  sectionNameRoute='Administration' sectionName='Administration' source={require('../assets/fac2.jpg')} />
-            <Section  sectionNameRoute='Departement' sectionName='Départements'  source={require('../assets/fac4.jpg')}/> 
-            <Section  sectionNameRoute='EspaceLoisir' sectionName='Espace Loisirs' source={require('../assets/fac5.jpg')}/>
-        </View> */}
+        <View style={styles.sectionContainer}>
+        <Section  sectionNameRoute='DonSang' sectionName='Processus de don de sang' source={require('../assets/image1.png')} />
+        <Section  sectionNameRoute='AdDon' sectionName="Critères d'admissibilité" source={require('../assets/image2.png')} />
+        <Section  sectionNameRoute='ImpactDon' sectionName='Impact des dons de sang'  source={require('../assets/image3.png')}/> 
+           
+        </View>
 
         </ScrollView>
     );
@@ -74,7 +79,7 @@ const HomeContent = () => {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#f0f3f5', 
-        marginTop:10,
+        //marginTop:10,
         marginBottom: 15
     },
 
@@ -89,13 +94,21 @@ const HomeContent = () => {
         fontWeight: "bold",
         textAlign: "center",
         color:"#CE1A19",
-        marginBottom: 10,
+        marginBottom: 12,
        // textTransform: 'uppercase',
     },
     introText: {
         fontSize: 16,
         textAlign: 'center',
         color: '#140F1F', 
+        marginBottom:10
+    },
+    introText2: {
+        fontSize: 15,
+        textAlign: 'center',
+        color: '#140F1F', 
+        marginBottom:10,
+        fontWeight: "bold",
     },
     sectionContainer: {
         marginTop: 30,
@@ -103,25 +116,22 @@ const HomeContent = () => {
     sectionButton: {
         flexDirection: 'row',
         alignItems: 'center',
-        borderRadius: 22,
-        marginBottom: 25,
+        borderRadius: 50,
+        marginBottom: 22,
         paddingVertical: 30, // ajuster la hauteur
-        paddingHorizontal: 72,
+        paddingHorizontal: 50,
         overflow: 'hidden',
         justifyContent: 'center',
     },
     sectionButtonText: {
-        fontSize: 22,
+        fontSize: 18,
         fontWeight: 'bold',
         marginRight: 18,
-    // color: '#FEAC5D',
         color: '#FFFFFF',
     
     },
     icon: {
-        color: '#FFFFFF',
-        //color: '#FEAC5D',
-
+        color: '#ffffff',
     },
     });
 

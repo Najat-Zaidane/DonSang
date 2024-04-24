@@ -10,6 +10,9 @@ import ProfileScreen from './screens/ProfileScreen'
 import RdvScreen from './screens/RdvScreen'
 import CentersScreen from './screens/CentersScreen'
 import { store } from './redux/store';
+import DonSangScreen from './screens/DonSangScreen';
+import AdDonScreen from './screens/AdDonScreen';
+import ImpactDonScreen from './screens/ImpactDonScreen';
 
 
 //The provider actually is to make the store so the global states available to any nested components that need acces to it 
@@ -29,6 +32,10 @@ export default function App() {
       <Stack.Screen name="Register" component={RegisterScreen} options ={{headerShown: false, headerLeft:null}}/> 
       <Stack.Screen name="Rdv" component={RdvScreen} options ={{headerShown: false, headerLeft:null}}/> 
       <Stack.Screen name="Centers" component={CentersScreen} options ={{headerShown: false, headerLeft:null}}/> 
+      <Stack.Screen name="DonSang" component={DonSangScreen} /> 
+      <Stack.Screen name="AdDon" component={AdDonScreen} /> 
+      <Stack.Screen name="ImpactDon" component={ImpactDonScreen} /> 
+
       </Stack.Navigator>
     </NavigationContainer>
     </Provider>
