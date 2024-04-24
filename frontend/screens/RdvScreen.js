@@ -1,11 +1,12 @@
 import React from "react";
 import { SafeAreaView , Text, StyleSheet } from "react-native";
 import FooterTabs from "../components/nav/FooterTabs";
+import RdvContent from "../components/RdvContent";
 
 const RdvScreen = () => {
     return(
         <SafeAreaView style={styles.container}>
-        <Text>RDV BOOKING</Text>
+        <RdvContent/>
         <FooterTabs/>
     </SafeAreaView>
     )

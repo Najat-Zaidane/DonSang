@@ -48,7 +48,7 @@ const registerUser = asyncHandler( async (req,res) => {
         }) }
 
         }catch (error) {
-          res.status(500).json({message : 'Failed to create the user !'})
+          res.status(500).json({message : 'Erreur lors de la création de votre compte, veuillez réssayer !'})
           console.log(error)
     }
 })
@@ -74,12 +74,13 @@ const loginUser = asyncHandler( async (req,res) => {
                     nom: user.nom,
                     prenom:user.prenom,
                     email : user.email,
-                    isActive : user.isActive,
+                    //isActive : user.isActive,
+                    role: user.role,
                     token : generateToken(user.id),
              })
             }
         else {
-            res.status(400).json({message : 'Invalid  credentials!'})
+            res.status(400).json({message : 'Email ou Mot de Passe Incorrect!'})
         }
     } catch (error) {
         res.status(500).json({message : 'Failed to log in the user !'})

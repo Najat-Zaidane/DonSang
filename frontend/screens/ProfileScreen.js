@@ -20,7 +20,7 @@ const ProfileScreen = ({navigation}) =>{
 
     const user = useSelector(state => state.auth.user);
 
-    console.log('userinHomeContent', user)
+    console.log('userinProfile', user)
 
     useEffect(() => {
         // Check if user is populated, if yes, set loading to false
@@ -40,8 +40,8 @@ const ProfileScreen = ({navigation}) =>{
               source={require('../assets/user3.png')}
               style={styles.image}
             />
+            <Text style={styles.text1}>{user.role} :</Text>
             <Text style={styles.text}>{loading ? "attend" : user.nom} {loading ? "attend" : user.prenom}</Text>
-            <Text style={styles.text}>{user.role}</Text>
             <Text style={styles.text}>{loading ? "attend" : user.email} </Text> 
             </View>
 
@@ -65,10 +65,10 @@ const styles=StyleSheet.create ({
           backgroundColor: "#f0f3f5",
     },
     container2: {
-        justifyContent : 'center',
+      justifyContent : 'center',
       alignItems : 'center',
-      marginTop : 100,
-    //  marginBottom : -100 ,
+      marginTop : 150,
+     marginBottom : -100 ,
     },
     image : {
         height: 160,
@@ -80,12 +80,17 @@ const styles=StyleSheet.create ({
     },
     text : {
         fontSize: 14,
-        marginBottom: 4,
-        marginVertical: 5,
+        marginVertical: 2,
+        
     }, 
+    text1 : {
+      fontSize: 14,
+      marginVertical: 2,
+      fontWeight : 'bold'
+  }, 
     loginButton: {
         backgroundColor: '#CE1A19',
-        borderRadius: 20,
+        borderRadius: 25,
         justifyContent: 'center',
         //marginBottom : 15,
         height : 58,

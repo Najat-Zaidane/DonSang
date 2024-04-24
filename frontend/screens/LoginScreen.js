@@ -66,7 +66,7 @@ const onChangeText = (text , inputName) =>{
 const OnPress = async () => {
 
   if(!email || !pwd){
-    alert("Veuillez Remplir tous les champs")
+   alert("Veuillez remplir tous les champs")
     return;
   } 
   //the user is validated iin the backend
