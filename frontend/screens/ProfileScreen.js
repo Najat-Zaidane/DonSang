@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import {SafeAreaView, Text,StyleSheet,Image, View, TouchableOpacity} from 'react-native'
 import FooterTabs from "../components/nav/FooterTabs";
 import {useSelector, useDispatch } from 'react-redux';
@@ -8,13 +8,28 @@ import { logout,reset } from "../redux/auth/authSlice";
 const ProfileScreen = ({navigation}) =>{
 
     const dispatch = useDispatch()
-    const {user} = useSelector((state) => state.auth)
+   // const {user} = useSelector((state) => state.auth)
 
     const onLogout = async => {
         dispatch(logout())
         dispatch(reset())
-        navigation.navigate('Login')
+        navigation.navigate('Login')    
     }
+
+    const [loading, setLoading] = useState(true);
+
+    const user = useSelector(state => state.auth.user);
+
+    console.log('userinHomeContent', user)
+
+    useEffect(() => {
+        // Check if user is populated, if yes, set loading to false
+        if (user) {
+          setLoading(false);
+        }
+      }, [user]);
+
+
     
 
     return (
@@ -25,8 +40,8 @@ const ProfileScreen = ({navigation}) =>{
               source={require('../assets/user1.png')}
               style={styles.image}
             />
-            <Text style={styles.text}>Nom et prenom</Text>
-            <Text style={styles.text}>email et tele</Text> 
+            <Text style={styles.text}>{loading ? "attend" : user.nom} {loading ? "attend" : user.prenom}</Text>
+            <Text style={styles.text}>{loading ? "attend" : user.email} </Text> 
             </View>
 
             <View  >

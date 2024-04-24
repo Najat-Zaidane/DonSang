@@ -28,16 +28,27 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeContent = () => {
 
+    const [loading, setLoading] = useState(true);
+
     const user = useSelector(state => state.auth.user);
+
     console.log('userinHomeContent', user)
+
+    useEffect(() => {
+       
+        if (user) {
+          setLoading(false);
+        }
+      }, [user]);
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
 
         <View style={styles.welcomeContainer}>
         <Text style={styles.welcomeText}>
-                Bienvenue sur notre application {user?.nom} !
+                Bienvenue, {loading ? "attend" : user.nom} {user.prenom} !
         </Text>
+        <Text style={}
         </View>
     
         {/* Conteneur pour les sections cliquables */}

@@ -23,6 +23,8 @@ const protect = asyncHandler ( async (req, res , next ) =>{
              //get the user from the token 
              const user = await User.findByPk(decoded.id)
 
+             //check the user's role ( if it's admin or not)
+
              //exclude the password field from the user object because it's hashed
              req.user = {
                 id: user.id,

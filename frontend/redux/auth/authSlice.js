@@ -40,10 +40,13 @@ export const register = createAsyncThunk('auth/register',async(user , thunkApi) 
 export const login = createAsyncThunk('auth/login',async(user , thunkApi) => {
     try {
         const userLocal =  await AsyncStorage.getItem('user')
+
+        
         
         if(userLocal){
             console.log('userLocInSlice', userLocal)
-            return userLocal
+            const userObject = JSON.parse(userLocal);
+            return userObject
         }      
         return await authService.login(user);
 
