@@ -37,10 +37,11 @@ const ProfileScreen = ({navigation}) =>{
 
             <View style={styles.container2}>
             <Image
-              source={require('../assets/user1.png')}
+              source={require('../assets/user3.png')}
               style={styles.image}
             />
             <Text style={styles.text}>{loading ? "attend" : user.nom} {loading ? "attend" : user.prenom}</Text>
+            <Text style={styles.text}>{user.role}</Text>
             <Text style={styles.text}>{loading ? "attend" : user.email} </Text> 
             </View>
 
@@ -70,21 +71,20 @@ const styles=StyleSheet.create ({
     //  marginBottom : -100 ,
     },
     image : {
-        height: 170,
-        width: 170,
+        height: 160,
+        width: 160,
         borderRadius: 85,
-        borderWidth: 2,
+        borderWidth: 1,
         borderColor: "#7CC1A6",
         marginBottom : 15
     },
     text : {
         fontSize: 14,
-       // marginBottom: 4,
+        marginBottom: 4,
         marginVertical: 5,
     }, 
     loginButton: {
         backgroundColor: '#CE1A19',
-       // padding: 10,
         borderRadius: 20,
         justifyContent: 'center',
         //marginBottom : 15,

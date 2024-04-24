@@ -18,30 +18,37 @@ const ImpactDonScreen = () => {
         <View style={styles.aproposContainer}>
         <Text style={styles.title}>L'impact du don de sang : Sauver des vies et bien plus encore ! 🩸</Text>   
         
+        <Text style={styles.bold}>1. Sauver des vies :</Text>
+        <Text center style={styles.apropos2}>. Disponibilité dans les cas d'urgences médicales.      </Text>
+        <Text center style={styles.apropos2}>. Aide dans les traitemens des maladies chroniques.     </Text>
+        <Text center style={styles.apropos2}>. Aide dans les traitements du cancer.       </Text>
+        <Text center style={styles.apropos2}>.  Disponibilité continue de sang pour les hôpitaux.      </Text>
 
-        <Text style={styles.bold}>1. Avantages pour la santé :  </Text>
-        <Text center style={styles.apropos2}>. Régénérer les cellules sanguines.</Text>
-        <Text center style={styles.apropos2}>. Réduire le risque du cancer de foie.</Text>
-        <Text center style={styles.apropos2}>. Renforcer le système immunitaire. </Text>
+        <Text style={styles.bold}>2. Avantages pour la santé ‍⚕️:</Text>
+        <Text center style={styles.apropos2}>. Régénérer les cellules sanguines.      </Text>
+        <Text center style={styles.apropos2}>. Réduire le risque du cancer de foie.      </Text>
+        <Text center style={styles.apropos2}>. Renforcer le système immunitaire.       </Text>
+        <Text center style={styles.apropos2}>.  Bilan de santé gratuit.       </Text>
+
+       
      
-        <Text style={styles.bold}>2. Impact sur la vie</Text>
+        <Text style={styles.bold}>3. Impact sur la vie</Text>
         <Text center style={styles.apropos2}>. Sentiment de satisfaction et de solidarité.</Text>
         <Text center style={styles.apropos2}>. Conscience de la santé et du bien-être.</Text>
         <Text center style={styles.apropos2}>. Inspiration pour les autres. </Text>
 
-        <Text style={styles.bold}>3. Impact sur la vie</Text>
-        <Text center style={styles.apropos2}>. Sentiment de satisfaction et de solidarité.</Text>
-        <Text center style={styles.apropos2}>. Conscience de la santé et du bien-être.</Text>
-
+        
+        <Text style={styles.titleFinal}>N'oubliez pas que ces avantages potentiels pour la santé
+         s'appliquent aux dons de sang réguliers, généralement un à deux fois par an.</Text>  
 
         </View>    
 
         {/* Galerie Section */}
         <View style={styles.gallerieContainer}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.imageContainer}>
-          <Image source={require('../assets/image1.png')} style={styles.img} />
-          <Image source={require('../assets/image2.png')} style={styles.img} />
-          <Image source={require('../assets/image3.png')} style={styles.img} />
+          <Image source={require('../assets/a3.png')} style={styles.img} />
+          <Image source={require('../assets/a4.png')} style={styles.img} />
+          <Image source={require('../assets/a2.png')} style={styles.img} />
           </ScrollView>
         </View>  
 
@@ -68,6 +75,13 @@ const styles=StyleSheet.create({
         marginBottom: 18,
         textAlign: "center",
         color : "#CE1A19",
+      },
+      titleFinal : {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 18,
+        textAlign: "center",
+        //color : "#CE1A19",
       },
      apropos: {
         fontSize: 15,
