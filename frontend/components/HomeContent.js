@@ -2,7 +2,7 @@
 //it displays a list of items that can be clicked on and navigates to different pages based on what was clicked
 
 import React, { useEffect , useState} from "react";
-import { View, TouchableOpacity, StyleSheet, SafeAreaView ,ImageBackground, ScrollView,Text } from "react-native";
+import { View, TouchableOpacity, StyleSheet, SafeAreaView ,ImageBackground, ScrollView,Text , Image} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import {useSelector} from "react-redux"
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -45,6 +45,12 @@ const HomeContent = () => {
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
+            <View style={styles.logoContainer}>
+          <Image
+           source={require('../assets/logo2.png')} 
+           style={styles.logo}          
+          />
+        </View>
 
         <View style={styles.welcomeContainer}>
         <Text style={styles.welcomeText}>
@@ -107,11 +113,11 @@ const HomeContent = () => {
         fontSize: 15,
         textAlign: 'center',
         color: '#140F1F', 
-        marginBottom:10,
+       // marginBottom:8,
         fontWeight: "bold",
     },
     sectionContainer: {
-        marginTop: 30,
+        marginTop: 15,
     },
     sectionButton: {
         flexDirection: 'row',
@@ -132,6 +138,16 @@ const HomeContent = () => {
     },
     icon: {
         color: '#ffffff',
+    },
+    logoContainer : {
+        marginTop : 20,
+        marginBottom :-16,
+        alignItems: 'center',
+      },
+    logo : {
+     width : 180,
+     height : 90,
+     resizeMode:"contain",
     },
     });
 

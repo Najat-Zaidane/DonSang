@@ -1,5 +1,5 @@
 import React from "react";
-import {SafeAreaView, Text,StyleSheet} from 'react-native'
+import {SafeAreaView, Text,StyleSheet,View, Image} from 'react-native'
 import FooterTabs from "../components/nav/FooterTabs";
 import HomeContent from "../components/HomeContent";
 
@@ -19,6 +19,8 @@ const styles=StyleSheet.create ({
     container :{
            flex: 1,
           justifyContent : "space-between",
+          
           backgroundColor: "#f0f3f5",
     },
+    
 });

@@ -9,7 +9,7 @@ const ProcessusScreen = () => {
         
         <View style={styles.logoContainer}>
           <Image
-           source={require('../assets/logo1.png')} 
+           source={require('../assets/logo2.png')} 
            style={styles.logo}          
           />
         </View>
@@ -59,10 +59,12 @@ const ProcessusScreen = () => {
 
         {/* Galerie Section */}
         <View style={styles.gallerieContainer}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.imageContainer}>
-          <Image source={require('../assets/image1.png')} style={styles.img} />
-          <Image source={require('../assets/image2.png')} style={styles.img} />
-          <Image source={require('../assets/image3.png')} style={styles.img} />
+        <ScrollView horizontal showsHorizontalScrollIndicator={true} contentContainerStyle={styles.imageContainer}>
+          <Image source={require('../assets/don3.png')} style={styles.img} />
+          <Image source={require('../assets/don4.png')} style={styles.img} />
+          <Image source={require('../assets/don2.png')} style={styles.img} />
+          <Image source={require('../assets/don5.png')} style={styles.img} />
+          <Image source={require('../assets/don1.png')} style={styles.img} />
           </ScrollView>
         </View>  
 
@@ -86,7 +88,7 @@ const styles=StyleSheet.create({
       title: {
         fontSize: 17,
         fontWeight: 'bold',
-        marginBottom: 12,
+        marginBottom: 18,
         textAlign: "center",
         color : "#CE1A19",
       },

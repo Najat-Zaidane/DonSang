@@ -9,65 +9,48 @@ const CritereScreen = () => {
         
         <View style={styles.logoContainer}>
           <Image
-           source={require('../assets/logo1.png')} 
+           source={require('../assets/logo2.png')} 
            style={styles.logo}          
           />
         </View>
         
         {/* Section description   */}
         <View style={styles.aproposContainer}>
-        <Text style={styles.title}>Tout savoir sur le don de sang</Text>   
+        <Text style={styles.title}>Êtes-vous admissible ?</Text>   
         <Text center style={styles.apropos}>
-        Devenez un héros en donnant votre sang et en aidant à sauver des vies. Découvrez tout ce que vous devez savoir sur le don de sang dans cette section. 
+        Pour donner votre sang au Maroc, vous devez remplir ces conditions principales : 
         </Text>
 
-        <Text style={styles.bold}>1. Qu'est-ce que le don de sang?</Text>
+        <Text style={styles.bold}>1. Age : </Text>
         <Text center style={styles.apropos2}>
-        Le don de sang est un processus par lequel une personne donne volontairement une certaine quantité de son sang, au profit d'une personne malade qui en a besoin.
+            Les donneurs doivent généralement être âgés de <Text style={{fontWeight : 'bold'}}>18 à 65 ans.</Text>
         </Text>
 
-        <Text style={styles.bold}>2. Qu'elles son les étapes du don de sang?</Text>
-        <Text center style={styles.apropos2}>1- Acceuil et remplissage du questionnaire pré-don.</Text>
-        <Text center style={styles.apropos2}>2- Entretien médical ( Etat de santé, vie personnlle..)</Text>
-        <Text center style={styles.apropos2}>3- Prélèvement de sang  </Text>
-        <Text center style={styles.apropos2}>4- Le repos du donateur et la collation</Text>
+        <Text style={styles.bold}>2. Poids :</Text>
+        <Text center style={styles.apropos2}>
+        Le poids minimum requis pour un donneur est généralement d'<Text style={{fontWeight : 'bold'}}>environ 50 kg</Text>
+        </Text>
+        
+        <Text style={styles.bold}>3. État de santé :</Text>
+        <Text center style={styles.apropos2}>. Bonne santé générale, sans maladie chronique ou contagieuse.</Text>
+        <Text center style={styles.apropos2}>. Pas de grossesse/allaitement</Text>
+        <Text center style={styles.apropos2}>. Pas d'alcool/drogues</Text>
+        <Text center style={styles.apropos2}>. Pas de tatouage/piercing récents
+</Text>
 
-        <Text style={styles.bold}>3. Qu'elle est la durée du dons de sang?</Text>
-        <Text center style={styles.apropos2}>Le prélèvement de sang lui-même dure environ<Text style={{fontWeight : 'bold'}}> 10 minutes.</Text></Text>
-        <Text center style={styles.apropos2}>
-        Le processus complet, incluant l'accueil, l'analyse sanguine, le don, la collation et le repos, prend généralement environ 1 heure.
-        </Text>
 
-        <Text style={styles.bold}>4. Sécurité et hygiène </Text>
+        <Text style={styles.bold}>4. Antécédents médicaux :</Text>
         <Text center style={styles.apropos2}>
-        . Sélection rigoureuse des donneurs.
-        </Text>
+        Les donneurs doivent être en mesure de fournir des informations précises sur leur <Text style={{fontWeight : 'bold'}}>historique médical </Text> 
+         (les maladies transmissibles par le sang : <Text style={{fontWeight : 'bold'}}>VIH, l'hépatite B et C ...</Text> )
+      </Text>
+
+      <Text style={styles.bold}>5. Intervalle entre les dons :</Text>
         <Text center style={styles.apropos2}>
-        . Matériel stérile et à usage unique.
-        </Text>
-        <Text center style={styles.apropos2}>
-        . Désinfection du site de prélèvement.
-        </Text>
-        <Text center style={styles.apropos2}>
-        . Hygiène des mains du personnel médical.
-        </Text>
-        <Text center style={styles.apropos2}>
-        . Elimination des déchets aprés le don.
-        </Text>
+        Entre les dons de sang, il existe un intervalle minimum <Text style={{fontWeight : 'bold'}}>d'environ 8 à 12 semaines</Text> pour permettre au donneur de récupérer complètement. 
+      </Text>
 
         </View>    
-
-        {/* Galerie Section */}
-        <View style={styles.gallerieContainer}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.imageContainer}>
-          <Image source={require('../assets/image1.png')} style={styles.img} />
-          <Image source={require('../assets/image2.png')} style={styles.img} />
-          <Image source={require('../assets/image3.png')} style={styles.img} />
-          </ScrollView>
-        </View>  
-
-     
-        
        </ScrollView>
     );
 }
@@ -86,7 +69,7 @@ const styles=StyleSheet.create({
       title: {
         fontSize: 17,
         fontWeight: 'bold',
-        marginBottom: 12,
+        marginBottom: 18,
         textAlign: "center",
         color : "#CE1A19",
       },
@@ -97,30 +80,16 @@ const styles=StyleSheet.create({
         marginBottom : 10,
       },
       apropos2: {
-        fontSize: 15,
+        fontSize: 15,  
+        textAlign: 'center',
         color: '#140F1F', 
         marginBottom : 12,
-      },
-      gallerieContainer : {
-        marginHorizontal: 8,
-        marginBottom:80
       },
       bold:{
         fontWeight: 'bold',
         color : "#7CC1A6",
         fontSize:15,
-        marginBottom:5
-      },
-      imageContainer : {
-      marginTop: 10,
-      shadowOffset:{width:1,height:1},
-      shadowOpacity:0.9,
-      shadowRadius:5,
-      },
-      img : {
-        width: 350,
-        height: 200,
-        borderRadius:5,
+        marginBottom:5,
       },
       logoContainer : {
         marginTop : 20,
