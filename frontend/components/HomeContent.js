@@ -27,7 +27,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
     // };
 
 const HomeContent = () => {
-
+  
+    // those lines before the return are to fetch the user data for any use case
     const [loading, setLoading] = useState(true);
 
     const user = useSelector(state => state.auth.user);
@@ -46,9 +47,12 @@ const HomeContent = () => {
 
         <View style={styles.welcomeContainer}>
         <Text style={styles.welcomeText}>
-                Bienvenue, {loading ? "attend" : user.nom} {user.prenom} !
+                Bienvenue, sur EasyDonate !
         </Text>
-        <Text style={}
+        <Text style={styles.introText}>
+        Votre plateforme de don de sang simplifiée
+        Donnez du sang, sauvez des vies !
+        </Text>
         </View>
     
         {/* Conteneur pour les sections cliquables */}
@@ -81,18 +85,18 @@ const HomeContent = () => {
         padding: 20,
     },
     welcomeText: {
-        fontSize: 16,
+        fontSize: 17,
         fontWeight: "bold",
         textAlign: "center",
         color:"#CE1A19",
         marginBottom: 10,
-        textTransform: 'uppercase',
+       // textTransform: 'uppercase',
     },
-    // introText: {
-    //     fontSize: 16,
-    //     textAlign: 'center',
-    //     color: '#140F1F', 
-    // },
+    introText: {
+        fontSize: 16,
+        textAlign: 'center',
+        color: '#140F1F', 
+    },
     sectionContainer: {
         marginTop: 30,
     },
