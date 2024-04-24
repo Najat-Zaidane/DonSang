@@ -7,6 +7,9 @@ import {useSelector , useDispatch} from 'react-redux'
 import { login,reset } from "../redux/auth/authSlice";
 import Spinner from "../components/Spinner" 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Alert } from 'react-native';
+
+
 
 const LoginScreen = ({navigation}) => {
 
@@ -66,10 +69,10 @@ const onChangeText = (text , inputName) =>{
 const OnPress = async () => {
 
   if(!email || !pwd){
-   alert("Veuillez remplir tous les champs")
+   Alert.alert('',"Veuillez remplir tous les champs")
     return;
   } 
-  
+
   //the user is validated iin the backend
     const userData = {  
       email,

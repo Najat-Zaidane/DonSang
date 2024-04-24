@@ -4,6 +4,7 @@ import {Picker} from '@react-native-picker/picker';
 import axios from 'axios';
 import DateTimePicker from '@react-native-community/datetimepicker'
 import {useSelector, useDispatch } from 'react-redux';
+import { Alert } from 'react-native';
 
 
 const API_URL_centers = 'http://192.168.1.101:5000/api/centers/'
@@ -25,7 +26,7 @@ const RdvContent = () => {
      //Date partie
 
     // Fonction appelée lorsque la date est sélectionnée dans le sélecteur de date
-    const handleDateChange = (event, selectedDate) => {
+    const handleDateChange = (selectedDate) => {
         const currentDate = selectedDate || date;
         setSelectedDate(currentDate);
     };
@@ -88,8 +89,14 @@ const RdvContent = () => {
             });
           
            console.log('RDV created:', response.data);
+
+           if(response){
+           Alert.alert('Succes','Votre rendez-vous a été créé avec succès.')
+           }
+
         } catch (error) {
             console.error('Failed to create RDV:', error);
+            Alert.alert('Oops!','Erreur lors de la prise de rendez-vous, veuillez réssayer')
         }
    }
     return(
@@ -98,10 +105,9 @@ const RdvContent = () => {
                 <Text style={styles.title1}>Prenez votre Rendez-vous!</Text>
 
                 <View >
-
-                    
-                {/*  date */}
-            
+  
+                {/*  date */}     
+                <Text style={styles.dateTitle}>Sélectionnez une date</Text>  
                 <DateTimePicker
                     value={selectedDate}
                     mode="date"
@@ -111,29 +117,28 @@ const RdvContent = () => {
                 />
 
                 {/* centers */}
-                <View>
+            
                 <Picker
                     selectedValue={selectedCenter}
                     onValueChange={(itemValue) => setSelectedCenter(itemValue)}
-                    style={styles.picker}
-                    //itemStyle={styles.item}
+                    style={styles.picker1}
                 >
                     
-                    <Picker.Item label="Sélectionnez le centre" value="" />
+                    <Picker.Item label="Sélectionnez un centre" value="" />
                     {centers.map((center) => (
                         <Picker.Item key={center.id} label={center.nom} value={center.id} />
                     ))}
 
                 </Picker>
-                </View>
+                
+                
 
                  {/* creneaux */}
-                 <View>
+                
                 <Picker
                     selectedValue={selectedCreneau}
                     onValueChange={(itemValue) => setSeelectedCreneau(itemValue)}
-                    style={styles.picker}
-                    //itemStyle={styles.item}
+                    style={styles.picker2}
                 >
                     
                     <Picker.Item label="Sélectionnez un creneau" value="" />
@@ -142,7 +147,7 @@ const RdvContent = () => {
                     ))}
 
                 </Picker>
-                </View>
+              
 
                 {/* submiting the form */}
                 <TouchableOpacity style={styles.submitButton} onPress={onPress} >
@@ -167,22 +172,33 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     title1 : {
-        fontSize: 17,
+        fontSize: 20,
         fontWeight: "bold",
         textAlign: "center",
         color:"#CE1A19",
         marginBottom: 35,
     },
-    picker: {
-       height: 100,
-        width: 290,
-        marginBottom: 35,
-      // backgroundColor: "#f0f3f5",
+    dateTitle: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        marginBottom:10,
+        textAlign : 'center',
+        color: "#1D828E"
     },
+    picker1: {
+       height: 100,
+        width: 300,
+        marginBottom: 30,
+       backgroundColor: "#f0f3f5", 
+    },
+    picker2: {
+        height: 100,
+         width: 300,
+         marginBottom: 30,
+        backgroundColor: "#f0f3f5",
+     },   
     date : {
-        //height: 50,
         width: 200,
-       // marginBottom: 15,
     },
     submitText: {
         color: '#FFFFFF',
@@ -194,22 +210,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#CE1A19',
         borderRadius: 30,
         justifyContent: 'center',
-       // marginBottom: 20,
         shadowOffset:{width:4,height:4},
         shadowOpacity:0.6,
         shadowRadius:2,
-        marginTop:200, //*
+        marginTop:115, 
         height: 50,
     },
-    // datePickerContainer: {
-    //     width: '100%',
-    //     marginBottom: 20,
-    // },
-    // item: {
-    //    // fontSize: 25,
-    //    // color: 'red',
-    //    // textAlign: 'left',
-    //     //fontWeight: 'bold',
-    //   },
-   
 })

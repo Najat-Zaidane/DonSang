@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from "react";
-import {SafeAreaView, Text,StyleSheet,Image, View, TouchableOpacity} from 'react-native'
+import {SafeAreaView, Text,StyleSheet,Image, View, TouchableOpacity,ScrollView, Button} from 'react-native'
 import FooterTabs from "../components/nav/FooterTabs";
 import {useSelector, useDispatch } from 'react-redux';
 import { logout,reset } from "../redux/auth/authSlice";
@@ -44,6 +44,9 @@ const ProfileScreen = ({navigation}) =>{
             <Text style={styles.text}>{loading ? "attend" : user.nom} {loading ? "attend" : user.prenom}</Text>
             <Text style={styles.text}>{loading ? "attend" : user.email} </Text> 
             </View>
+
+            {/* mes rdvs section */}
+           
 
             <View  >
             <TouchableOpacity style={styles.loginButton} onPress={onLogout} >

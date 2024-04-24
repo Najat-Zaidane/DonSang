@@ -132,7 +132,6 @@ const styles=StyleSheet.create({
      width : 160,
      height : 80,
      resizeMode:"contain",
-    // elevation : 5 ,
     },
 });
 

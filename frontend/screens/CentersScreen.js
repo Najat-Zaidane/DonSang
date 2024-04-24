@@ -1,11 +1,12 @@
 import React from "react";
 import { SafeAreaView , Text, StyleSheet } from "react-native";
 import FooterTabs from "../components/nav/FooterTabs";
+import CentersContent from "../components/CentersContent";
 
 const CentersScreen = () => {
     return(
         <SafeAreaView style={styles.container}>
-        <Text>CENTERS LIST</Text>
+        <CentersContent/>
         <FooterTabs/>
     </SafeAreaView>
     )
