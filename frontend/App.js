@@ -15,6 +15,7 @@ import AdDonScreen from './screens/CritereScreen';
 import ImpactDonScreen from './screens/ImpactDonScreen';
 import CritereScreen from './screens/CritereScreen';
 import ProcessusScreen from './screens/ProcessusScreen';
+import HeaderTabLeft from './components/nav/HeaderTabLeft';
 
 
 //The provider actually is to make the store so the global states available to any nested components that need acces to it 
@@ -34,9 +35,9 @@ export default function App() {
       <Stack.Screen name="Register" component={RegisterScreen} options ={{headerShown: false, headerLeft:null}}/> 
       <Stack.Screen name="Rdv" component={RdvScreen} options ={{headerShown: false, headerLeft:null}}/> 
       <Stack.Screen name="Centers" component={CentersScreen} options ={{headerShown: false, headerLeft:null}}/> 
-      <Stack.Screen name="Processus" component={ProcessusScreen} /> 
-      <Stack.Screen name="Criteres" component={CritereScreen} /> 
-      <Stack.Screen name="ImpactDon" component={ImpactDonScreen} /> 
+      <Stack.Screen name="Processus" component={ProcessusScreen} options={{title:"" ,headerLeft : () => <HeaderTabLeft/> }} /> 
+      <Stack.Screen name="Criteres" component={CritereScreen} options={{title:"" ,headerLeft : () => <HeaderTabLeft/> }}/> 
+      <Stack.Screen name="ImpactDon" component={ImpactDonScreen} options={{title:"" ,headerLeft : () => <HeaderTabLeft/> }}/> 
 
       </Stack.Navigator>
     </NavigationContainer>

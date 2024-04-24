@@ -74,7 +74,7 @@ const ProcessusScreen = () => {
 //style
 const styles=StyleSheet.create({
     container: {
-        flex: 1,
+      flexGrow: 1,
         alignItems: 'center',
         backgroundColor: '#f0f3f5', 
       },
@@ -103,10 +103,11 @@ const styles=StyleSheet.create({
       },
       gallerieContainer : {
         marginHorizontal: 8,
+        marginBottom:80
       },
       bold:{
         fontWeight: 'bold',
-        color : "#E2AB2D",
+        color : "#7CC1A6",
         fontSize:15,
         marginBottom:5
       },

@@ -5,59 +5,78 @@ import { StyleSheet , ScrollView , Text, View,Image} from "react-native";
 const ImpactDonScreen = () => {
     return  (
        <ScrollView contentContainerStyle={styles.container}>
+
         
-        {/* image du logo */}
         <View style={styles.logoContainer}>
           <Image
            source={require('../assets/logo1.png')} 
            style={styles.logo}          
           />
         </View>
-
-        {/* faculty description section  */}
+        
+        {/* Section description   */}
         <View style={styles.aproposContainer}>
-        <Text style={styles.title}>Bienvenue à la Faculté des Sciences de l'Université Chouaib Doukali</Text>   
+        <Text style={styles.title}>Tout savoir sur le don de sang</Text>   
         <Text center style={styles.apropos}>
-        La Faculté des Sciences d'El Jadida, créée en <Text style={styles.bold}>1986</Text>, est l'un des établissements de <Text style={styles.bold}>l'Université Chouaib Doukkali.</Text>
+        Devenez un héros en donnant votre sang et en aidant à sauver des vies. Découvrez tout ce que vous devez savoir sur le don de sang dans cette section. 
         </Text>
-        <Text center style={styles.apropos}>
-        Elle draine une population étudiante importante qui totalise un chiffre de <Text style={styles.bold}>3500</Text> étudiants, issue de toutes les provinces de la Région.
+
+        <Text style={styles.bold}>1. Qu'est-ce que le don de sang?</Text>
+        <Text center style={styles.apropos2}>
+        Le don de sang est un processus par lequel une personne donne volontairement une certaine quantité de son sang, au profit d'une personne malade qui en a besoin.
         </Text>
-        <Text center style={styles.apropos}>
-        Elle accueille aussi des étudiants étrangers appartenant à des pays essentiellement africains, du sub-Sahara, et du Maghreb.
+
+        <Text style={styles.bold}>2. Qu'elles son les étapes du don de sang?</Text>
+        <Text center style={styles.apropos2}>1- Acceuil et remplissage du questionnaire pré-don.</Text>
+        <Text center style={styles.apropos2}>2- Entretien médical ( Etat de santé, vie personnlle..)</Text>
+        <Text center style={styles.apropos2}>3- Prélèvement de sang  </Text>
+        <Text center style={styles.apropos2}>4- Le repos du donateur et la collation</Text>
+
+        <Text style={styles.bold}>3. Qu'elle est la durée du dons de sang?</Text>
+        <Text center style={styles.apropos2}>Le prélèvement de sang lui-même dure environ<Text style={{fontWeight : 'bold'}}> 10 minutes.</Text></Text>
+        <Text center style={styles.apropos2}>
+        Le processus complet, incluant l'accueil, l'analyse sanguine, le don, la collation et le repos, prend généralement environ 1 heure.
         </Text>
+
+        <Text style={styles.bold}>4. Sécurité et hygiène </Text>
+        <Text center style={styles.apropos2}>
+        . Sélection rigoureuse des donneurs.
+        </Text>
+        <Text center style={styles.apropos2}>
+        . Matériel stérile et à usage unique.
+        </Text>
+        <Text center style={styles.apropos2}>
+        . Désinfection du site de prélèvement.
+        </Text>
+        <Text center style={styles.apropos2}>
+        . Hygiène des mains du personnel médical.
+        </Text>
+        <Text center style={styles.apropos2}>
+        . Elimination des déchets aprés le don.
+        </Text>
+
         </View>    
 
-         {/* Galerie Section */}
-         <View style={styles.gallerieContainer}>
-        <Text style={styles.title}>Galerie</Text> 
+        {/* Galerie Section */}
+        <View style={styles.gallerieContainer}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.imageContainer}>
           <Image source={require('../assets/image1.png')} style={styles.img} />
           <Image source={require('../assets/image2.png')} style={styles.img} />
           <Image source={require('../assets/image3.png')} style={styles.img} />
-          {/* <Image source={require('../assets/fac1.jpeg')} style={styles.img} />
-          <Image source={require('../assets/fac8.jpg')} style={styles.img} />
-          <Image source={require('../assets/fac10.jpg')} style={styles.img} />
-          <Image source={require('../assets/fac7.jpg')} style={styles.img} />
-          <Image source={require('../assets/fac9.jpg')} style={styles.img} /> */}
           </ScrollView>
         </View>  
 
-        {/* Chiffre et stats */}
+     
         
-         
-
-
        </ScrollView>
     );
 }
 //style
 const styles=StyleSheet.create({
     container: {
-        flex: 1,
-        //justifyContent: 'center',
+      flexGrow: 1,
         alignItems: 'center',
-        backgroundColor: '#F8EFE0', 
+        backgroundColor: '#f0f3f5', 
       },
      aproposContainer: {
       alignItems: 'center',
@@ -68,9 +87,8 @@ const styles=StyleSheet.create({
         fontSize: 17,
         fontWeight: 'bold',
         marginBottom: 12,
-
         textAlign: "center",
-        color : "#1D828E",
+        color : "#CE1A19",
       },
      apropos: {
         fontSize: 15,
@@ -78,14 +96,20 @@ const styles=StyleSheet.create({
         color: '#140F1F', 
         marginBottom : 10,
       },
-      gallerieContainer : {
-       // alignItems: 'center',
-        marginHorizontal: 8,
+      apropos2: {
+        fontSize: 15,
+        color: '#140F1F', 
+        marginBottom : 12,
       },
-      // texte en gras
+      gallerieContainer : {
+        marginHorizontal: 8,
+        marginBottom:80
+      },
       bold:{
         fontWeight: 'bold',
-        color : "#E2AB2D"
+        color : "#7CC1A6",
+        fontSize:15,
+        marginBottom:5
       },
       imageContainer : {
       marginTop: 10,
