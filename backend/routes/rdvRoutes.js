@@ -4,7 +4,7 @@ const {createRDV, getRDVs, getRDVByID, updateRDV, deleteRDV } = require('../cont
 const { protect } = require('../middleware/authMiddleware')
 
 //all the routes need to be protected
-router.route('/').post(protect,createRDV).get(protect,getRDVs) 
+router.route('/').post(createRDV).get(getRDVs) 
 router.route('/:id').put(protect,updateRDV).delete(protect,deleteRDV)
 //router.route('/:id').get(getRDVByID).put(updateRDV).delete(deleteRDV)
 

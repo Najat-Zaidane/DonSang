@@ -22,7 +22,7 @@ const LoginScreen = ({navigation}) => {
     };
 
     userInLocal();
-  }, []); // Empty dependency array ensures this effect runs only once
+  }, []); // Tableau vide pour l'effect ne s'execute qu'une seule fois 
   
 
   const [formData,setFormData] = useState({
@@ -69,6 +69,7 @@ const OnPress = async () => {
    alert("Veuillez remplir tous les champs")
     return;
   } 
+  
   //the user is validated iin the backend
     const userData = {  
       email,

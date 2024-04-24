@@ -10,12 +10,13 @@ const ProfileScreen = ({navigation}) =>{
     const dispatch = useDispatch()
    // const {user} = useSelector((state) => state.auth)
 
-    const onLogout = async => {
+    const onLogout = async () => {
         dispatch(logout())
         dispatch(reset())
         navigation.navigate('Login')    
     }
 
+    // just for cheking up
     const [loading, setLoading] = useState(true);
 
     const user = useSelector(state => state.auth.user);
@@ -23,15 +24,14 @@ const ProfileScreen = ({navigation}) =>{
     console.log('userinProfile', user)
 
     useEffect(() => {
-        // Check if user is populated, if yes, set loading to false
+        //  if user is found we'll set  the loading to false
         if (user) {
           setLoading(false);
         }
       }, [user]);
 
 
-    
-
+  
     return (
         <SafeAreaView style={styles.container}>
 

@@ -8,20 +8,21 @@ const User = require('../models/userModel');
 //@routes POST /api/rdvs
 //@access Private
 const createRDV = asyncHandler(async (req,res) =>{
-        const {date, status,creneauId, centerId} = req.body; // to re see ( userId)
+        const {date,creneauId, centerId, userId} = req.body; // to re see ( userId)
 
-    if(!date || !status || !creneauId || !centerId){
+    if(!date ||  !creneauId || !centerId){
         res.status(400).json({message : 'Please fill all the fields ( date , status, creneauId, centerId)'})
     }
-    const  rdvExist = await Rdv.findOne({where:{date:date, creneauId:creneauId , userId : req.user.id}})
+    
+    const  rdvExist = await Rdv.findOne({where:{date:date, creneauId:creneauId , userId : userId}})
     
     if(!rdvExist){ 
     const newRdv = await Rdv.create({
         date : req.body.date,
-        status : req.body.status,
+        //status : req.body.status,
         creneauId : req.body.creneauId,
         centerId: req.body.centerId,
-        userId: req.user.id,
+        userId: userId,
     })
     res.status(200).json({
         message : 'RDV created successfuly',
