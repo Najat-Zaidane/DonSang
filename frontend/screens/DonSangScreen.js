@@ -16,7 +16,7 @@ const DonSangScreen = () => {
         
         {/* Section description   */}
         <View style={styles.aproposContainer}>
-        <Text style={styles.title}>Bienvenue à la Faculté des Sciences de l'Université Chouaib Doukali</Text>   
+        <Text style={styles.title}>Tout savoir sur le don de sang</Text>   
         <Text center style={styles.apropos}>
         La Faculté des Sciences d'El Jadida, créée en <Text style={styles.bold}>1986</Text>, est l'un des établissements de <Text style={styles.bold}>l'Université Chouaib Doukkali.</Text>
         </Text>
@@ -59,9 +59,8 @@ const styles=StyleSheet.create({
         fontSize: 17,
         fontWeight: 'bold',
         marginBottom: 12,
-
         textAlign: "center",
-        color : "#1D828E",
+        color : "#CE1A19",
       },
      apropos: {
         fontSize: 15,
