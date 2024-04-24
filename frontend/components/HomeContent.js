@@ -62,8 +62,8 @@ const HomeContent = () => {
     
         {/* Conteneur pour les sections cliquables */}
         <View style={styles.sectionContainer}>
-        <Section  sectionNameRoute='DonSang' sectionName='Processus de don de sang' source={require('../assets/image1.png')} />
-        <Section  sectionNameRoute='AdDon' sectionName="Critères d'admissibilité" source={require('../assets/image2.png')} />
+        <Section  sectionNameRoute='Processus' sectionName='Processus de don de sang' source={require('../assets/image1.png')} />
+        <Section  sectionNameRoute='Criteres' sectionName="Critères d'admissibilité" source={require('../assets/image2.png')} />
         <Section  sectionNameRoute='ImpactDon' sectionName='Impact des dons de sang'  source={require('../assets/image3.png')}/> 
            
         </View>

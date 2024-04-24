@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet , ScrollView , Text, View,Image} from "react-native";
 
 
-const AdDonScreen = () => {
+const CritereScreen = () => {
     return  (
        <ScrollView contentContainerStyle={styles.container}>
         {/* image du logo */}
@@ -111,4 +111,4 @@ const styles=StyleSheet.create({
 
 
 
-export default AdDonScreen;
+export default CritereScreen;
