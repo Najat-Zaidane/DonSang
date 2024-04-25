@@ -5,7 +5,11 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import axios from 'axios';
 
 
-const API_URL_centers = 'http://192.168.1.101:5000/api/centers/'
+//const API_URL_centers = 'http://192.168.1.101:5000/api/centers/'
+
+const API_URL_centers = 'https://foxhound-resolved-jackal.ngrok-free.app/api/centers/'
+
+//const API_URL_centers =  process.env.API_UR+'centers/'
 
 const  CentersContent = () => {
 

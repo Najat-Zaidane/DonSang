@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from'axios'
 
 
-const API_URL = 'http://192.168.1.101:5000/api/users/'
+const API_URL = 'https://foxhound-resolved-jackal.ngrok-free.app/api/users/'
 
 
 
@@ -35,9 +35,12 @@ const register = async (userData) => {
 //login User 
 const login = async (userData) => {
     try{
+
      const response = await axios.post(API_URL + 'login', userData)
 
     if(response.data) {
+        console.log("5555",userData)
+
         await AsyncStorage.setItem('user', JSON.stringify(response.data)) // the response.data will include the token
     }
     console.log('inservice',response.data)

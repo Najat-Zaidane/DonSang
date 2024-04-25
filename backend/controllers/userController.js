@@ -74,7 +74,6 @@ const loginUser = asyncHandler( async (req,res) => {
                     nom: user.nom,
                     prenom:user.prenom,
                     email : user.email,
-                    //isActive : user.isActive,
                     role: user.role,
                     token : generateToken(user.id),
              })
@@ -86,20 +85,6 @@ const loginUser = asyncHandler( async (req,res) => {
         res.status(500).json({message : 'Failed to log in the user !'})
     }
 })
-
-
-// // protect this route 
-// //@desc get all the users for admin profit
-// //@route GET /api/users
-// //@access Private
-// const getUsers = asyncHandler( async (req,res) => { 
-//     try {
-//         const users = await User.findAll()
-//         res.status(200).json({message : 'Successfully got all users', data : users})
-//     } catch (error) {
-//         res.status(500).json({message : 'Failed to fetch the users ! '})
-//     }
-// }) 
 
 //@desc get user data
 //@route GET /api/users/me
@@ -119,7 +104,7 @@ const getMe = asyncHandler( async (req, res) => {
 //Generate the JWT
 //sign a new token with the id passed in and the secret used
 const generateToken = (id) => {
-    //should return a ole as well to manage roles ( admin)
+  
     return jwt.sign({id} , process.env.JWT_SECRET,{
         expiresIn : '30d', // token will expire in 30 days
     } )

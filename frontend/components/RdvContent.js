@@ -6,10 +6,21 @@ import DateTimePicker from '@react-native-community/datetimepicker'
 import {useSelector, useDispatch } from 'react-redux';
 import { Alert } from 'react-native';
 
+/* 
+avec adress ip pc 
+const API_URL_centers = 'http://192.168.56.1:5000/api/centers/'
+const API_URL_creneaux = 'http://192.168.56.1:5000/api/creneaus/'
+const API_URL_RDV = 'http://192.168.56.1:5000/api/rdvs/'
 
-const API_URL_centers = 'http://192.168.1.101:5000/api/centers/'
-const API_URL_creneaux = 'http://192.168.1.101:5000/api/creneaus/'
-const API_URL_RDV = 'http://192.168.1.101:5000/api/rdvs/'
+ */
+// const API_URL_centers = process.env.API_UR+'centers/'
+// const API_URL_creneaux = process.env.API_UR+'creneaus/'
+// const API_URL_RDV = process.env.API_UR+'rdvs/'
+
+//avec ngrok
+const API_URL_centers = 'https://foxhound-resolved-jackal.ngrok-free.app/api/centers/'
+const API_URL_creneaux = 'https://foxhound-resolved-jackal.ngrok-free.app/api/creneaus/'
+const API_URL_RDV = 'https://foxhound-resolved-jackal.ngrok-free.app/api/rdvs/'
 
 
 const RdvContent = () => {
@@ -26,7 +37,7 @@ const RdvContent = () => {
      //Date partie
 
     // Fonction appelée lorsque la date est sélectionnée dans le sélecteur de date
-    const handleDateChange = (selectedDate) => {
+    const handleDateChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
         setSelectedDate(currentDate);
     };
