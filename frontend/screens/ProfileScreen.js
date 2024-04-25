@@ -28,7 +28,19 @@ const ProfileScreen = ({navigation}) =>{
      //to display rdvs
      const [rdvs, setRdvs] = useState([]);
 
+    //Pour recuperer les details du nom du centre et creneau du rdv de l'user
+     const fetchDetails = async (type, id) => {
+      try {
+          const response = await axios.get(`${API_URL_DETAILS}/${type}/${id}`);
+          console.log('detailsinProfile', response.data)
+          return response.data;
+      } catch (error) {
+          console.error(error);
+          return null;
+      }
+  };
 
+  
      const fetchRdvs = async () => {
        try {
            const response = await axios.get(API_URL_RDV, {
@@ -67,12 +79,15 @@ const ProfileScreen = ({navigation}) =>{
             </View>
 
             {/* mes rdvs section */}
-           {/* Afficher les rendez-vous de l'utilisateur */}
-           <View>
+           
+           <View style={styles.rdvSec}>
+            <Text style={styles.rdvTitle}>Mes rendez-vous :</Text>
                 {rdvs.map(rdv => (
                     <View key={rdv.id}>
-                        <Text>{rdv.date}</Text>
-                        {/* Ajoutez ici les autres informations de rendez-vous */}
+                        <Text style={styles.rdv}>
+                          Rendez vous pour le : {rdv.date} au 
+                          </Text>
+                      
                     </View>
                 ))}
             </View>
@@ -92,6 +107,21 @@ const ProfileScreen = ({navigation}) =>{
 export default ProfileScreen;
 
 const styles=StyleSheet.create ({
+  rdvSec: {
+      justifyContent: 'center',
+      alignItems : 'center',
+  },
+  rdvTitle: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginBottom:10,
+    textAlign : 'center',
+   // color: "#1D828E"
+  },
+  rdv : {
+   marginBottom : 10,
+
+  },
     container :{
            flex: 1,
           justifyContent : "space-between",
@@ -100,8 +130,8 @@ const styles=StyleSheet.create ({
     container2: {
       justifyContent : 'center',
       alignItems : 'center',
-      marginTop : 150,
-     marginBottom : -100 ,
+      marginTop : 80,
+      marginBottom : -20 ,
     },
     image : {
         height: 160,
