@@ -2,13 +2,15 @@ import React, {useState,useEffect} from "react";
 import {SafeAreaView, Text,StyleSheet,Image, View, TouchableOpacity,ScrollView, Button} from 'react-native'
 import FooterTabs from "../components/nav/FooterTabs";
 import {useSelector, useDispatch } from 'react-redux';
-import { logout,reset } from "../redux/auth/authSlice";
+import { logout,reset } from "../redux/auth/authSlice"
+import axios from 'axios'
+
+const API_URL_RDV = 'https://foxhound-resolved-jackal.ngrok-free.app/api/rdvs/'
 
 
 const ProfileScreen = ({navigation}) =>{
 
     const dispatch = useDispatch()
-   // const {user} = useSelector((state) => state.auth)
 
     const onLogout = async () => {
         dispatch(logout())
@@ -23,14 +25,33 @@ const ProfileScreen = ({navigation}) =>{
 
     console.log('userinProfile', user)
 
+     //to display rdvs
+     const [rdvs, setRdvs] = useState([]);
+
+
+     const fetchRdvs = async () => {
+       try {
+           const response = await axios.get(API_URL_RDV, {
+               headers: {
+                   Authorization: `Bearer ${user.token}` // pour envoyez le token d'authentification avec la requête
+               }
+           });
+           console.log('rdvsinProfile',response.data)
+           setRdvs(response.data); 
+       } catch (error) {
+           console.error('Failed to fetch appointments:', error);
+       }
+   };
+
     useEffect(() => {
         //  if user is found we'll set  the loading to false
         if (user) {
           setLoading(false);
+          fetchRdvs();
         }
       }, [user]);
 
-
+    
   
     return (
         <SafeAreaView style={styles.container}>
@@ -46,7 +67,16 @@ const ProfileScreen = ({navigation}) =>{
             </View>
 
             {/* mes rdvs section */}
-           
+           {/* Afficher les rendez-vous de l'utilisateur */}
+           <View>
+                {rdvs.map(rdv => (
+                    <View key={rdv.id}>
+                        <Text>{rdv.date}</Text>
+                        {/* Ajoutez ici les autres informations de rendez-vous */}
+                    </View>
+                ))}
+            </View>
+
 
             <View  >
             <TouchableOpacity style={styles.loginButton} onPress={onLogout} >

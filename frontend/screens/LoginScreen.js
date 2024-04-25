@@ -72,13 +72,13 @@ const OnPress = async () => {
    Alert.alert('',"Veuillez remplir tous les champs")
     return;
   } 
-  // // validation de format de mail
-  // let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  // if(reg.test(email) === false)  
-  // {  
-  //   Alert.alert("Erreur","Votre adresse e-mail ne correspond pas au format attendu.")  
-  //   return;    
-  // } 
+  // validation de format de mail
+  let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  if(reg.test(email) === false)  
+  {  
+    Alert.alert("Erreur","Votre adresse e-mail ne correspond pas au format attendu.")  
+    return;    
+  } 
 
   //the user is validated iin the backend
     const userData = {  
