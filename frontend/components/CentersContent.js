@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from "react";
-import { View,ScrollView, Text, StyleSheet, Image } from "react-native";
+import { View,ScrollView, Text, StyleSheet, Image, TextInput} from "react-native";
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import FeatherIcon from 'react-native-vector-icons/Feather';
 import axios from 'axios';
-import { SearchBar } from "react-native-screens";
+
 
 const API_URL_centers = 'http://192.168.1.101:5000/api/centers/'
 
@@ -42,26 +43,27 @@ const  CentersContent = () => {
 
     return (
         <ScrollView style={styles.container} >
-
-        {/* <View style={styles.logoContainer}>
-          <Image
-           source={require('../assets/logo2.png')} 
-           style={styles.logo}          
-          />
-        </View> */}
-
-       
-            
+ 
             <Text style={styles.title}>Découvrez les centres de santé disponibles</Text>
-
             
-{/* Barre de recherche */}
-                <SearchBar
-                placeholder="Rechercher un centre"
+            {/* Barre de recherche */}
+            <View style={styles.searchContainer}>
+            <TextInput
+                placeholder="Rechercher un centre..."
+                placeholderTextColor="#9695b0"
                 onChangeText={handleSearch}
                 value={keyword}
                 style={styles.searchbar}
             />
+
+            <View style={styles.searchFloating}>
+            <View style={styles.searchButton}>
+                <FeatherIcon name="search" size={20} color="#003CA6" />
+            </View>
+            </View>
+            </View>
+  
+
          
 
            {/* Liste des centres filtrés */}
@@ -90,11 +92,16 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 18,
-        marginTop: 15,
+        marginTop: 25,
         fontWeight: "bold",
         marginBottom: 25,
         color: "#CE1A19",
         textAlign: 'center',
+    },
+    searchContainer : {
+        borderRadius: 8,
+        paddingHorizontal: 30,  
+        marginBottom: 30,
     },
     section:{ 
         marginBottom: 30,
@@ -129,9 +136,33 @@ const styles = StyleSheet.create({
      resizeMode:"contain",
     },
     searchbar: {
-        marginTop: 10,
-        marginBottom: 10,
+        height: 55,
+        backgroundColor: '#ffffff',
+        paddingHorizontal: 20,
+        color: '#003CA6', // i could change it to black 
+        fontSize: 15,
+        borderRadius: 9999,
+        borderWidth: 0.15 , 
+        shadowOpacity : 0.15
     },
+    searchFloating: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        height: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 40,
+      },
+      searchButton: {
+        alignSelf: 'center',
+        width: 44,
+        height: 44,
+        borderRadius: 9999,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+   
 });
 
 export default CentersContent;
