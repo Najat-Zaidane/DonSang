@@ -20,7 +20,8 @@ const  CentersContent = () => {
 
     // Filtrer les centres en fonction du texte de recherche
     const filteredCenters = centers.filter(center =>
-        center.nom.toLowerCase().includes(keyword.toLowerCase())
+        //recherche en fonction de nom et adresse
+        center.nom.toLowerCase().includes(keyword.toLowerCase()) || center.adresse.toLowerCase().includes(keyword.toLowerCase())
     );
 
     //récupération des centres de santé 
