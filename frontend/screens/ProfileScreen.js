@@ -28,19 +28,7 @@ const ProfileScreen = ({navigation}) =>{
      //to display rdvs
      const [rdvs, setRdvs] = useState([]);
 
-    //Pour recuperer les details du nom du centre et creneau du rdv de l'user
-     const fetchDetails = async (type, id) => {
-      try {
-          const response = await axios.get(`${API_URL_DETAILS}/${type}/${id}`);
-          console.log('detailsinProfile', response.data)
-          return response.data;
-      } catch (error) {
-          console.error(error);
-          return null;
-      }
-  };
 
-  
      const fetchRdvs = async () => {
        try {
            const response = await axios.get(API_URL_RDV, {
@@ -79,13 +67,15 @@ const ProfileScreen = ({navigation}) =>{
             </View>
 
             {/* mes rdvs section */}
+
+            {/* to re check */}
            
            <View style={styles.rdvSec}>
             <Text style={styles.rdvTitle}>Mes rendez-vous :</Text>
                 {rdvs.map(rdv => (
                     <View key={rdv.id}>
                         <Text style={styles.rdv}>
-                          Rendez vous pour le : {rdv.date} au 
+                          Rendez vous pour le : {rdv.date}  
                           </Text>
                       
                     </View>
