@@ -75,7 +75,7 @@ const ProfileScreen = ({navigation}) =>{
                 {rdvs.map(rdv => (
                     <View key={rdv.id}>
                         <Text style={styles.rdv}>
-                          Rendez vous pour le : {rdv.date}  
+                          Rendez vous pour le : {rdv.date} - {rdv.status}
                           </Text>
                       
                     </View>
